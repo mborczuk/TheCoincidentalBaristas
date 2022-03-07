@@ -1,0 +1,13 @@
+The Coincidental Baristas: Michael Borczuk, Shyne Choi, Aryaman Goenka, Daniel Sooknanan
+SoftDev
+P02 -- Plane Game Devlog
+2022-03-07
+
+michaelB, shyneC, aryamanG, danielS -- 2022-03-07 06:43
+Complete initial version of design document.
+
+michaelB, shyneC, aryamanG, danielS -- 2022-03-07 18:54
+Add images of inspiration game to design document. Clarify what data we will be storing in the database.
+
+
+
