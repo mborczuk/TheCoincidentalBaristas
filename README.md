@@ -14,7 +14,7 @@ The project is a game that uses physics to simulate the flight path of a paper a
 ## Launch Codes
 ### Clone Repository
 
-Clone this repository to your computer with https link:
+Clone this repository to your computer with ssh:
 ```shell 
 $ git clone git@github.com:mborczuk/TheCoincidentalBaristas.git
 ```
