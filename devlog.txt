@@ -12,5 +12,7 @@ Add images of inspiration game to design document. Clarify what data we will be 
 michaelB -- 2022-03-08 19:49
 Add requirements.txt to the project. Update Flask app by commenting out some code so that it works properly. 
 
+aryamanG -- 2022-03-09 8:39
+Added login and and register functions/routing
 
 
