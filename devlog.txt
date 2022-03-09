@@ -9,5 +9,8 @@ Complete initial version of design document.
 michaelB, shyneC, aryamanG, danielS -- 2022-03-07 18:54
 Add images of inspiration game to design document. Clarify what data we will be storing in the database.
 
+michaelB -- 2022-03-08 19:49
+Add requirements.txt to the project. Update Flask app by commenting out some code so that it works properly. 
+
 
 
