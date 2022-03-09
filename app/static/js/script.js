@@ -59,13 +59,10 @@ var drawDVD = () => {
   dvd.src = "/static/js/logo_dvd.jpg"; // populate with dvd logo
   date = new Date();
   var time = (date.getTime() - starttime) / 1000;
-  //dx = vx * time;
-  //dy = vy * time + 0.5 * -9.8 * time * time;
-  //imgX += (dx / 3779.5275590551);
-  //imgY -= (dy / 3779.5275590551);
-  imgX += vx
-  imgY += vy
-  vy += 0.03
+  dx = vx * time;
+  dy = vy * time + 0.5 * -9.8 * time * time;
+  imgX += (dx / 3779.5275590551);
+  imgY -= (dy / 3779.5275590551);
   ctx.drawImage(dvd, imgX, imgY, imgWidth, imgHeight);
  
   if(imgY >= 500) {
