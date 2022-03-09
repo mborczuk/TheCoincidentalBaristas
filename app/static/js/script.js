@@ -33,21 +33,40 @@ var clear = (e) => {
 var imgWidth = 100;
 var imgHeight = 50;
 var imgX = 0;
-var imgY = 500;
-var velocity = 500;
-var theta = 45 * Math.PI / 180;
+var imgY = 300;
+var velocity = 150;
+var theta = 45 * (Math.PI / 180);
 var vx = velocity * Math.cos(theta);
 // console.log(vx);
-var vy = -1 * velocity * Math.sin(theta);
+var vy = velocity * Math.sin(theta);
 var dx = 0;
 var dy = 0;
 var date = new Date();
 var starttime = date.getTime();
-
+var mouseX;
+var mouseY;
+var test = (e) => {
+  mouseX = e.offsetX;
+  mouseY = e.offsetY;
+  console.log(mouseX);
+  starttime = date.getTime();
+}
+var test2 = (e) => {
+  console.log(e.offsetX);
+  date = new Date();
+  var time = (date.getTime() - starttime) / 1000;
+  console.log(time);
+  if(e.offsetX == mouseX) {
+    console.log("lol");
+  } else {
+     velocity = Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / time;
+     console.log("velocity" + velocity);
+  }
+}
 var DVD = () => {
   // on button press, recalculate the x and y coordinates of the dvd logo
   imgX = 0;
-  imgY = 500;
+  imgY = 300;
   starttime = date.getTime();
   // draw the logo
   drawDVD();
@@ -61,8 +80,8 @@ var drawDVD = () => {
   var time = (date.getTime() - starttime) / 1000;
   dx = vx * time;
   dy = vy * time + 0.5 * -9.8 * time * time;
-  imgX += (dx / 3779.5275590551);
-  imgY -= (dy / 3779.5275590551);
+  imgX += (dx / 3000);
+  imgY -= (dy / 3000);
   ctx.drawImage(dvd, imgX, imgY, imgWidth, imgHeight);
  
   if(imgY >= 500) {
@@ -133,3 +152,5 @@ var stopIt = () => {
 dotButton.addEventListener( "click", drawDot );
 stopButton.addEventListener( "click",  stopIt );
 dvdButton.addEventListener("click", DVD );
+c.addEventListener("mousedown", test);
+c.addEventListener("mouseup", test2);
