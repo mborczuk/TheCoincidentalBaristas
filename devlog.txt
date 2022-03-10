@@ -28,3 +28,6 @@ Add gitignore to prevent staging virtual environments & python cache files.
 danielS -- 2022-03-09 20:28
 Move login & register routes to auth.py. 
 Streamline login & register logic.
+
+danielS -- 2022-03-09 20:34
+Add draw_bg. Change canvas dimensions.
