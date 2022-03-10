@@ -1,43 +1,24 @@
-// Team IDon'tKnow -- Julia (Lia) Nelson, Michael Borczuk
-// SoftDev pd1
-// K32 -- canvas based DVD screensaver
-// 2022-02-17
-// time spent: 0.7 hours
-
-// model for HTML5 canvas-based animation
-
-// SKEELTON
-
-
 //access canvas and buttons via DOM
-var c = document.getElementById("playground");// GET CANVAS
-var dotButton = document.getElementById("buttonCircle");// GET DOT BUTTON
-var stopButton = document.getElementById("buttonStop");// GET STOP BUTTON
-var dvdButton = document.getElementById("buttonDVD"); // GET DVD BUTTON
-//prepare to interact with canvas in 2D
-var ctx = c.getContext("2d");// YOUR CODE HERE
-
-//set fill color to team color
-ctx.fillStyle = "aqua";// YOUR CODE HERE
+var c = document.getElementById("game_canvas"); // Get canvas
+var ctx = c.getContext("2d"); // Get canvas context
 
 var requestID;  //init global var for use with animation frames
-
 
 //var clear = function(e) {
 var clear = (e) => {
   console.log("clear invoked...")
-  ctx.clearRect(0,0,500,500);
+  ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
-
 
 var imgWidth = 100;
 var imgHeight = 50;
+
 var imgX = 0;
 var imgY = 300;
+
 var velocity = 150;
 var theta = 45 * (Math.PI / 180);
 var vx = velocity * Math.cos(theta);
-// console.log(vx);
 var vy = velocity * Math.sin(theta);
 var dx = 0;
 var dy = 0;
@@ -96,48 +77,6 @@ var drawDVD = () => {
   }
 };
 
-var radius = 0;
-var growing = true;
-
-
-//var drawDot = function() {
-var drawDot = () => {
-  console.log("drawDot invoked...")
-  clear(null);
-  ctx.beginPath();
-  ctx.arc(250, 250, radius, 0, 2 * Math.PI);
-  ctx.stroke();
-  ctx.fill();
-  if(radius == 250) {
-    growing = false;
-  }
-  if(radius == 0) {
-    growing = true;
-  }
-  if(growing) {
-    radius += 1;
-  } else {
-    radius -= 1;
-  }
-  window.cancelAnimationFrame(requestID);
-  requestID = window.requestAnimationFrame(drawDot);
-  
-  // YOUR CODE HERE
-
-  /*
-    ...to
-    Wipe the canvas,
-    Repaint the circle,
-
-    ...and somewhere (where/when is the right time?)
-    Update requestID to propagate the animation.
-    You will need
-    window.cancelAnimationFrame()
-    window.requestAnimationFrame()
-
-   */
-};
-
 
 //var stopIt = function() {
 var stopIt = () => {
@@ -146,11 +85,18 @@ var stopIt = () => {
   window.cancelAnimationFrame(requestID);
 };
 
+// Decimal between 0-1
+var loop_progress = 0
 
+function draw_bg(level) {
+  // create new image object to use as pattern
+  var bg = new Image();
+  bg.src = `../images/bg${level}.png`;
+  bg.onload = function() {
 
-
-dotButton.addEventListener( "click", drawDot );
-stopButton.addEventListener( "click",  stopIt );
-dvdButton.addEventListener("click", DVD );
-c.addEventListener("mousedown", test);
-c.addEventListener("mouseup", test2);
+    // create pattern
+    var bg_ptrn = ctx.createPattern(bg, 'repeat');
+    ctx.fillStyle = bg_ptrn;
+    ctx.fillRect(0, 0, c.clientWidth, bg.height);
+  }
+} 

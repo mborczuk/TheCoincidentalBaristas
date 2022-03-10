@@ -9,13 +9,6 @@ def create_app():
     app.config.from_mapping(
         SECRET_KEY = os.urandom(32),
     )
-
-    # Ensure the DB location exists
-    # try:
-    #     os.makedirs(app.instance_path)
-    # except OSError:
-    #     pass
-
     return app
 
 app = create_app()
