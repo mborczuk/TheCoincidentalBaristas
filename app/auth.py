@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, request, session, render_template, redirect, g
+from functools import wraps
 import os, sqlite3, json, urllib
 
 bp = Blueprint('auth', __name__)
@@ -7,6 +8,16 @@ def logged_in():
     """Returns whether a user is logged in or not."""
     return 'username' in session.keys()
 
+def guest_only(f):
+    """Denotes a page where users that are not logged in can access."""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if logged_in():
+            return redirect("/")
+        return f(*args, **kwargs)
+    return decorated_function
+
+@guest_only
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -24,11 +35,9 @@ def login():
             session['username'] = username
             return redirect("/")
 
-    if logged_in():
-        return redirect("/")
-    else:
-        return render_template('login.html')
+    return render_template('login.html')
 
+@guest_only
 @bp.route('/register', methods=['GET','POST'])
 def register():
 

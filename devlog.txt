@@ -31,3 +31,6 @@ Streamline login & register logic.
 
 danielS -- 2022-03-09 20:34
 Add draw_bg. Change canvas dimensions.
+
+danielS -- 2022-03-10 08:06
+Add guest_only decorator to logister routes.
