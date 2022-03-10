@@ -68,7 +68,7 @@ var test2 = (e) => {
   mouseDown = false; // mouse is not down anymore
   if(e.offsetX == mouseX) {
     console.log("lol"); // do nothing if the positions are the same
-  } 
+  }
   if(e.offsetX >= mouseX && e.offsetY < mouseY) { // can only throw the plane up and to the right
      velocity = Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time * 10); // set velocity using distance formula, TODO - scale velocity
      theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
@@ -100,12 +100,24 @@ var drawPlane = () => {
   date = new Date();
   var time = (date.getTime() - starttime) / 1000;
   // update x and y displacement separately
-  dx = vx * time; 
+  
+    // //F_drag = 0.5pCAv^2
+    // //0.32 is coefficient, .025 is estimated area of paper airplane
+    // //opposite direction of motion
+    // var dragForce = 1/2 * 1.2754 * 0.32 * .025 * velocity * velocity;
+    // // .0045 kg avg paper mass
+    // var dFvx = dragForce / .0045 * time * Math.cos(theta);
+    // var dFvy = dragForce / .0045 * time * Math.sin(theta);
+    // console.log("dragForce:" + dFvx + ", " + dFvy);
+    // dx = (vx - dFvx) * time;
+    // dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
+
+  dx = vx * time;
   dy = vy * time + 0.5 * -9.8 * time * time; // kinematics equation
   imgX += (dx / 3000);
   imgY -= (dy / 3000);
   ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
- 
+
   if(imgY >= 500) {
     console.log("hori: " + imgX);
     imgX = imgX % 500;
@@ -149,6 +161,6 @@ function draw_bg(level) {
     ctx.fillStyle = bg_ptrn;
     ctx.fillRect(0, 0, c.clientWidth, bg.height);
   }
-} 
+}
 
 gameLoop();
