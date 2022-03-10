@@ -23,3 +23,8 @@ Add initial user input launch function, using mousedown and mouseup events.
 
 danielS -- 2022-03-09 20:10
 Add level 1 stage assets.
+Add gitignore to prevent staging virtual environments & python cache files.
+
+danielS -- 2022-03-09 20:28
+Move login & register routes to auth.py. 
+Streamline login & register logic.
