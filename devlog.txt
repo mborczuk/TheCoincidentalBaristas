@@ -40,3 +40,6 @@ Complete throw function (you can throw the plane now!). Add a game animation loo
 
 michaelB -- 2022-03-10 17:56
 Smooth out initial movement by making time start out at 0.5 seconds (as opposed to 0 seconds). 
+
+michaelB -- 2022-03-10 18:04
+Update readme with launch codes.
