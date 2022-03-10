@@ -30,7 +30,7 @@ var mouseDown;
 var lastID = 0;
 var thrown = false;
 
-var test = (e) => {
+var mouseDownFunc = (e) => {
   if(!thrown) {
     mouseX = e.offsetX;
     mouseY = e.offsetY;
@@ -40,7 +40,7 @@ var test = (e) => {
     starttime = date.getTime();
   }
 }
-var test3 = (e) => {
+var mouseMoveFunc = (e) => {
   if(mouseDown == true && (requestID - lastID) >= 10) { // update every 10 frames
     console.log(requestID);
     console.log(lastID);
@@ -50,6 +50,10 @@ var test3 = (e) => {
     date = new Date();
     starttime = date.getTime(); // set new start time
     //console.log(mouseX);
+    var plane = new Image(); // initialize Image object
+    plane.src = "../images/paperairplane.png"; // populate with plane image
+    // clear(null);
+    // ctx.drawImage(plane, e.offsetX - imgWidth / 2, e.offsetY - imgHeight / 2, imgWidth, imgHeight); // this looks terrible
   }
   if(mouseDown == true) {
     //console.log("h");
@@ -59,7 +63,7 @@ var test3 = (e) => {
 
 }
 // on mouseup
-var test2 = (e) => {
+var mouseUpFunc = (e) => {
   if(!thrown) {
     // console.log(e.offsetX);
   date = new Date();
@@ -70,7 +74,7 @@ var test2 = (e) => {
     console.log("lol"); // do nothing if the positions are the same
   } 
   if(e.offsetX >= mouseX && e.offsetY < mouseY) { // can only throw the plane up and to the right
-     velocity = Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time * 10); // set velocity using distance formula, TODO - scale velocity
+     velocity = Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time); // set velocity using distance formula, TODO - scale velocity (if necessary)
      theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
      vx = velocity * Math.cos(theta); // get x and y components of velocity
      vy = velocity * Math.sin(theta);
@@ -98,10 +102,10 @@ var drawPlane = () => {
   var plane = new Image(); // initialize Image object
   plane.src = "../images/paperairplane.png"; // populate with plane image
   date = new Date();
-  var time = (date.getTime() - starttime) / 1000;
+  var time = ((date.getTime() - starttime) + 500) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
   // update x and y displacement separately
   dx = vx * time; 
-  dy = vy * time + 0.5 * -9.8 * time * time; // kinematics equation
+  dy = vy * time + 0.5 * -9.8 * Math.pow(time, 2); // kinematics equation
   imgX += (dx / 3000);
   imgY -= (dy / 3000);
   ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
@@ -113,7 +117,6 @@ var drawPlane = () => {
     ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
     thrown = false;
     stopIt();
-
   }
 };
 
@@ -121,8 +124,8 @@ var gameLoop = () => {
   if(thrown) {
     drawPlane();
   }
+  draw_bg(1);
   window.cancelAnimationFrame(requestID);
-  // console.log(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
 }
 //var stopIt = function() {
@@ -132,9 +135,9 @@ var stopIt = () => {
   window.cancelAnimationFrame(requestID);
 };
 
-c.addEventListener('mousedown', test);
-c.addEventListener('mousemove', test3);
-c.addEventListener('mouseup', test2);
+c.addEventListener('mousedown', mouseDownFunc);
+c.addEventListener('mousemove', mouseMoveFunc);
+c.addEventListener('mouseup', mouseUpFunc);
 // Decimal between 0-1
 var loop_progress = 0
 

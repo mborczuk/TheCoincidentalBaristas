@@ -37,3 +37,6 @@ Add guest_only decorator to logister routes.
 
 michaelB -- 2022-03-10 17:34
 Complete throw function (you can throw the plane now!). Add a game animation loop. Replace placeholder DVD logo with plane placeholder.
+
+michaelB -- 2022-03-10 17:56
+Smooth out initial movement by making time start out at 0.5 seconds (as opposed to 0 seconds). 
