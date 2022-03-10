@@ -6,7 +6,7 @@ var requestID;  //init global var for use with animation frames
 
 //var clear = function(e) {
 var clear = (e) => {
-  console.log("clear invoked...")
+  // console.log("clear invoked...")
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
 
@@ -26,58 +26,105 @@ var date = new Date();
 var starttime = date.getTime();
 var mouseX;
 var mouseY;
+var mouseDown;
+var lastID = 0;
+var thrown = false;
+
 var test = (e) => {
-  mouseX = e.offsetX;
-  mouseY = e.offsetY;
-  console.log(mouseX);
-  starttime = date.getTime();
-}
-var test2 = (e) => {
-  console.log(e.offsetX);
-  date = new Date();
-  var time = (date.getTime() - starttime) / 1000;
-  console.log(time);
-  if(e.offsetX == mouseX) {
-    console.log("lol");
-  } else {
-     velocity = Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / time;
-     console.log("velocity" + velocity);
+  if(!thrown) {
+    mouseX = e.offsetX;
+    mouseY = e.offsetY;
+    ctx.fillStyle = "red";
+    mouseDown = true; // you probably don't need to do this
+    // console.log(mouseX);
+    starttime = date.getTime();
   }
 }
-var DVD = () => {
-  // on button press, recalculate the x and y coordinates of the dvd logo
-  imgX = 0;
-  imgY = 300;
-  starttime = date.getTime();
-  // draw the logo
-  drawDVD();
-};
+var test3 = (e) => {
+  if(mouseDown == true && (requestID - lastID) >= 10) { // update every 10 frames
+    console.log(requestID);
+    console.log(lastID);
+    lastID = requestID; // last time we updated is now current time
+    mouseX = e.offsetX; // set mouseX
+    mouseY = e.offsetY; // set mouseY
+    date = new Date();
+    starttime = date.getTime(); // set new start time
+    //console.log(mouseX);
+  }
+  if(mouseDown == true) {
+    //console.log("h");
+    ctx.fillRect(e.offsetX, e.offsetY, 5, 5); // draw line
+    ctx.fillStyle = "black";
+  }
 
-var drawDVD = () => {
+}
+// on mouseup
+var test2 = (e) => {
+  if(!thrown) {
+    // console.log(e.offsetX);
+  date = new Date();
+  var time = (date.getTime() - starttime) / 1000; // get current time
+  // console.log(time);
+  mouseDown = false; // mouse is not down anymore
+  if(e.offsetX == mouseX) {
+    console.log("lol"); // do nothing if the positions are the same
+  } 
+  if(e.offsetX >= mouseX && e.offsetY < mouseY) { // can only throw the plane up and to the right
+     velocity = Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time * 10); // set velocity using distance formula, TODO - scale velocity
+     theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
+     vx = velocity * Math.cos(theta); // get x and y components of velocity
+     vy = velocity * Math.sin(theta);
+     console.log(vx);
+     console.log(vy);
+     ctx.fillStyle = "green";
+     ctx.fillRect(e.offsetX, e.offsetY, 5, 5);
+     //console.log(e.offsetX - mouseX);
+     console.log("velocity" + velocity);
+     console.log("theta " + theta * 180 / Math.PI);
+     thrown = true; // the plane has been thrown
+     imgX = e.offsetX - imgWidth / 2; // draw image so center is at mouseX and mouseY
+     imgY = e.offsetY - imgHeight / 2;
+     date = new Date();
+     starttime = date.getTime();
+  }
+  }
+}
+
+
+var drawPlane = () => {
   clear(null);
-  var dvd = new Image(); // initialize Image object
-  dvd.src = "/static/js/logo_dvd.jpg"; // populate with dvd logo
+  console.log(velocity);
+  // console.log(lastID);
+  var plane = new Image(); // initialize Image object
+  plane.src = "../images/paperairplane.png"; // populate with plane image
   date = new Date();
   var time = (date.getTime() - starttime) / 1000;
-  dx = vx * time;
-  dy = vy * time + 0.5 * -9.8 * time * time;
+  // update x and y displacement separately
+  dx = vx * time; 
+  dy = vy * time + 0.5 * -9.8 * time * time; // kinematics equation
   imgX += (dx / 3000);
   imgY -= (dy / 3000);
-  ctx.drawImage(dvd, imgX, imgY, imgWidth, imgHeight);
+  ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
  
   if(imgY >= 500) {
     console.log("hori: " + imgX);
     imgX = imgX % 500;
     imgY = 450;
-    ctx.drawImage(dvd, imgX, imgY, imgWidth, imgHeight);
+    ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
+    thrown = false;
     stopIt();
-  } else {
-    window.cancelAnimationFrame(requestID);
-    requestID = window.requestAnimationFrame(drawDVD);
+
   }
 };
 
-
+var gameLoop = () => {
+  if(thrown) {
+    drawPlane();
+  }
+  window.cancelAnimationFrame(requestID);
+  // console.log(requestID);
+  requestID = window.requestAnimationFrame(gameLoop);
+}
 //var stopIt = function() {
 var stopIt = () => {
   console.log("stopIt invoked...")
@@ -85,6 +132,9 @@ var stopIt = () => {
   window.cancelAnimationFrame(requestID);
 };
 
+c.addEventListener('mousedown', test);
+c.addEventListener('mousemove', test3);
+c.addEventListener('mouseup', test2);
 // Decimal between 0-1
 var loop_progress = 0
 
@@ -100,3 +150,5 @@ function draw_bg(level) {
     ctx.fillRect(0, 0, c.clientWidth, bg.height);
   }
 } 
+
+gameLoop();

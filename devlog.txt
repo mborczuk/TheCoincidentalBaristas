@@ -34,3 +34,6 @@ Add draw_bg. Change canvas dimensions.
 
 danielS -- 2022-03-10 08:06
 Add guest_only decorator to logister routes.
+
+michaelB -- 2022-03-10 17:34
+Complete throw function (you can throw the plane now!). Add a game animation loop. Replace placeholder DVD logo with plane placeholder.
