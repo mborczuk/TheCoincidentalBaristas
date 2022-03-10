@@ -21,4 +21,5 @@ Add basic projectile motion to JS canvas.
 michaelB -- 2022-03-09 08:48
 Add initial user input launch function, using mousedown and mouseup events.
 
-
+danielS -- 2022-03-09 20:10
+Add level 1 stage assets.
