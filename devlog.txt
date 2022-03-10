@@ -10,7 +10,7 @@ michaelB, shyneC, aryamanG, danielS -- 2022-03-07 18:54
 Add images of inspiration game to design document. Clarify what data we will be storing in the database.
 
 michaelB -- 2022-03-08 19:49
-Add requirements.txt to the project. Update Flask app by commenting out some code so that it works properly. 
+Add requirements.txt to the project. Update Flask app by commenting out some code so that it works properly.
 
 aryamanG -- 2022-03-09 08:39
 Added login and and register functions/routing
@@ -26,7 +26,7 @@ Add level 1 stage assets.
 Add gitignore to prevent staging virtual environments & python cache files.
 
 danielS -- 2022-03-09 20:28
-Move login & register routes to auth.py. 
+Move login & register routes to auth.py.
 Streamline login & register logic.
 
 danielS -- 2022-03-09 20:34
@@ -39,4 +39,8 @@ michaelB -- 2022-03-10 17:34
 Complete throw function (you can throw the plane now!). Add a game animation loop. Replace placeholder DVD logo with plane placeholder.
 
 michaelB -- 2022-03-10 17:56
-Smooth out initial movement by making time start out at 0.5 seconds (as opposed to 0 seconds). 
+Smooth out initial movement by making time start out at 0.5 seconds (as opposed to 0 seconds).
+
+shyneC -- 2022-03-10 18:04
+Worked with air resistance equation: the theory should be right, but final dragForce seems too big
+DD is updated with new site look

@@ -104,19 +104,20 @@ var drawPlane = () => {
   date = new Date();
   var time = ((date.getTime() - starttime) + 500) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
   // update x and y displacement separately
-  dx = vx * time; 
+  dx = vx * time;
   dy = vy * time + 0.5 * -9.8 * Math.pow(time, 2); // kinematics equation
+
+  // //F_drag = 0.5pCAv^2
+  // //0.32 is coefficient, .025 is estimated area of paper airplane
+  // //opposite direction of motion
+  // var dragForce = 1/2 * 1.2754 * 0.32 * .025 * velocity * velocity;
+  // // .0045 kg avg paper mass
+  // var dFvx = dragForce / .0045 * time * Math.cos(theta);
+  // var dFvy = dragForce / .0045 * time * Math.sin(theta);
+  // console.log("dragForce:" + dFvx + ", " + dFvy);
+  // dx = (vx - dFvx) * time;
+  // dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
   
-    // //F_drag = 0.5pCAv^2
-    // //0.32 is coefficient, .025 is estimated area of paper airplane
-    // //opposite direction of motion
-    // var dragForce = 1/2 * 1.2754 * 0.32 * .025 * velocity * velocity;
-    // // .0045 kg avg paper mass
-    // var dFvx = dragForce / .0045 * time * Math.cos(theta);
-    // var dFvy = dragForce / .0045 * time * Math.sin(theta);
-    // console.log("dragForce:" + dFvx + ", " + dFvy);
-    // dx = (vx - dFvx) * time;
-    // dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
   imgX += (dx / 3000);
   imgY -= (dy / 3000);
   ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
