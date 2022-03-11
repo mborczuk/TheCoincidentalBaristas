@@ -27,6 +27,8 @@ var starttime = date.getTime();
 var mouseX;
 var mouseY;
 var mouseDown;
+var dFvx = 0;
+var dFvy = 0;
 var lastID = 0;
 var thrown = false;
 var ay = 9.8 * 3780; 
@@ -90,6 +92,7 @@ var mouseUpFunc = (e) => {
       console.log("lol"); // do nothing if the positions are the same
     }
     if(e.offsetX >= mouseX) { // can only throw to the right
+      // TODO - fix bug in throwing
       velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time); // set velocity using distance formula, scale because otherwise the plane will never take off
       theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
       vx = velocity * Math.cos(theta); // get x and y components of velocity
@@ -123,20 +126,19 @@ var drawPlane = () => {
   starttime = date.getTime();
   vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
   console.log(ay);
-  // update x and y displacement separately
-  dx = vx * time;
-  dy = vy * time + 0.5 * ay * Math.pow(time, 2); // kinematics equation
-  // //F_drag = 0.5pCAv^2
-  // //0.32 is coefficient, .025 is estimated area of paper airplane
-  // //opposite direction of motion
-  // var dragForce = 1/2 * 1.2754 * 0.32 * .025 * velocity * velocity;
-  // // .0045 kg avg paper mass
-  // var dFvx = dragForce / .0045 * time * Math.cos(theta);
-  // var dFvy = dragForce / .0045 * time * Math.sin(theta);
-  // console.log("dragForce:" + dFvx + ", " + dFvy);
-  // dx = (vx - dFvx) * time;
-  // dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
-  console.log(vy);
+
+  //F_drag = 0.5pCAv^2
+  //0.32 is coefficient, .025 is estimated area of paper airplane
+  //opposite direction of motion
+  var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
+  // 100 kg avg paper mass, F/m = a
+  dFvx = dragForce / 5 * time * Math.cos(theta);
+  dFvy = dragForce / 5 * time * Math.sin(theta);
+  console.log("dragForce:" + dFvx + ", " + dFvy);
+  // console.log("velocity:" + dx+ ", " + dy)
+  dx = (vx - dFvx) * time;
+  dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
+  // console.log("velocity:" + dx+ ", " + dy)
   // actual distance the plane SHOULD have gone
   realX += dx; // distance
   realY += dy; // altitude
