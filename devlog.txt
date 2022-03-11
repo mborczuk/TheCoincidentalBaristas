@@ -47,3 +47,6 @@ DD is updated with new site look
 
 shyneC -- 2022-03-11 08:34
 Drag Force is now more reasonable compared with velocity
+
+aryamanG -- 2020-03-11 8:35
+Login and Register db functions
