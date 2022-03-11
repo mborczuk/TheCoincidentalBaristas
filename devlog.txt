@@ -44,3 +44,6 @@ Smooth out initial movement by making time start out at 0.5 seconds (as opposed 
 shyneC -- 2022-03-10 18:04
 Worked with air resistance equation: the theory should be right, but final dragForce seems too big
 DD is updated with new site look
+
+shyneC -- 2022-03-11 08:34
+Drag Force is now more reasonable compared with velocity
