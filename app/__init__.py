@@ -17,8 +17,8 @@ app = create_app()
 app.register_blueprint(auth.bp)
 
 @app.route("/", methods=['GET', 'POST'])
-def game():
-     return render_template('game.html')
+def landing():
+     return render_template('landing.html')
 
 if __name__ == "__main__":
     app.debug = True

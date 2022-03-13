@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Untitled Plane Game{% endblock %}
+
+{% block expand_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="layout-container">
+    <div class="header-container">
+        <h1>Untitled Plane Game</h1>
+        <h3 class="thin">by The Coincidental Baristas</h3>
+        <button type="button" class="btn btn-lg btn-fill">Play</button>
+        <button type="button" class="btn btn-lg btn-outline">Login</button>
+    </div>
+    <div class="side-panel design-container">
+        <img class="plane" src="{{ url_for('static', filename='images/landing_plane.png') }}">
+    </div>
+    <div class="side-panel logister-container">
+        <div class="login-container">
+            <h2>Login</h2>
+        </div>
+        <div class="register-container">
+            <h2>Register</h2>
+        </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+{% endblock %}

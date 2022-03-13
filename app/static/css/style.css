@@ -1,0 +1,20 @@
+:root {
+    --dark-blue: #0C0F1E;
+    --sky-blue: #47D0FF;
+    --red: #FB5555;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.thin {
+    font-weight: 400;
+}

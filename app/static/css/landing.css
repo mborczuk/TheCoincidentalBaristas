@@ -1,0 +1,39 @@
+body {
+    /* background-color: var(--sky-blue); */
+}
+
+.layout-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    padding: 100px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 50px 50px 4em;
+    justify-content: center;
+    gap: 10px 30px;
+}
+
+h1, h3 {
+    grid-column: -1/1;
+}
+
+.logister-container {
+    display: none;
+}
+
+.btn {
+    width: 150px;
+}
+
+.btn-fill {
+    background-color: var(--sky-blue);
+}
+
+.btn-outline {
+    border: 3px solid var(--sky-blue);
+}
