@@ -56,3 +56,6 @@ Fix projectile motion physics (there was a major bug). Update drag force logic t
 
 danielS -- 2022-03-12 21:00
 Create landing page layout. Added landing marquee and airplane bop animations.
+
+danielS -- 2022-03-12 21:14
+Add button styling.
