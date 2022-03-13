@@ -44,3 +44,12 @@ Smooth out initial movement by making time start out at 0.5 seconds (as opposed 
 shyneC -- 2022-03-10 18:04
 Worked with air resistance equation: the theory should be right, but final dragForce seems too big
 DD is updated with new site look
+
+shyneC -- 2022-03-11 08:34
+Drag Force is now more reasonable compared with velocity
+
+aryamanG -- 2020-03-11 8:35
+Login and Register db functions
+
+michaelB -- 2022-03-11 17:39
+Fix projectile motion physics (there was a major bug). Update drag force logic to work with new physics logic. Begin upgrade system.
