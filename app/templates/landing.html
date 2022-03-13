@@ -3,25 +3,40 @@
 
 {% block expand_head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+
+<style>
+    .landing-bg {
+        background-image: url(
+            "{{ url_for('static', filename='images/landing_bg.png') }}"
+        );
+    }
+</style>
 {% endblock %}
 
 {% block content %}
   <div class="layout-container">
     <div class="header-container">
         <h1>Untitled Plane Game</h1>
-        <h3 class="thin">by The Coincidental Baristas</h3>
-        <button type="button" class="btn btn-lg btn-fill">Play</button>
-        <button type="button" class="btn btn-lg btn-outline">Login</button>
-    </div>
-    <div class="side-panel design-container">
-        <img class="plane" src="{{ url_for('static', filename='images/landing_plane.png') }}">
-    </div>
-    <div class="side-panel logister-container">
-        <div class="login-container">
-            <h2>Login</h2>
+        <h2 class="thin">by The Coincidental Baristas</h2>
+        <div class="btn-container">
+            <button type="button" class="btn btn-lg btn-fill">Play</button>
+            <button type="button" class="btn btn-lg btn-outline">Login</button>
         </div>
-        <div class="register-container">
-            <h2>Register</h2>
+    </div>
+    <div class="gradient-overlay"></div>
+    <div class="side-panel">
+        <div class="landing-bg">
+        </div>
+        <div class="design-container">
+            <img id="landing_plane" src="{{ url_for('static', filename='images/landing_plane.png') }}">
+        </div>
+        <div class="logister-container">
+            <div class="login-container">
+                <h2>Login</h2>
+            </div>
+            <div class="register-container">
+                <h2>Register</h2>
+            </div>
         </div>
     </div>
   </div>

@@ -53,3 +53,6 @@ Login and Register db functions
 
 michaelB -- 2022-03-11 17:39
 Fix projectile motion physics (there was a major bug). Update drag force logic to work with new physics logic. Begin upgrade system.
+
+danielS -- 2022-03-12 21:00
+Create landing page layout. Added landing marquee and airplane bop animations.

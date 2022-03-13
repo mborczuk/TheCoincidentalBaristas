@@ -1,29 +1,39 @@
 body {
-    /* background-color: var(--sky-blue); */
+    background-color: var(--sky-blue);
 }
 
 .layout-container {
     display: grid;
     width: 100%;
     height: 100%;
-    padding: 100px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
 }
+
+/* HEADER / TITLE */
 
 .header-container {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    grid-template-rows: 50px 50px 4em;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 10px 30px;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 15vh calc(10px + 5vw);
+
+
+    color: var(--white);
+    z-index: 1;
 }
 
-h1, h3 {
-    grid-column: -1/1;
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2rem;
 }
 
 .logister-container {
-    display: none;
+    display: none !important;
 }
 
 .btn {
@@ -36,4 +46,59 @@ h1, h3 {
 
 .btn-outline {
     border: 3px solid var(--sky-blue);
+}
+
+/* GRADIENT OVERLAY */
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgb(71,208,255);
+    background: -moz-linear-gradient(90deg, rgba(71,208,255,1) 40%, rgba(71,208,255,0) 56%);
+    background: -webkit-linear-gradient(90deg, rgba(71,208,255,1) 40%, rgba(71,208,255,0) 56%);
+    background: linear-gradient(90deg, rgba(71,208,255,1) 40%, rgba(71,208,255,0) 56%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#47d0ff",endColorstr="#47d0ff",GradientType=1);
+
+    z-index: 0;
+}
+
+/* INTERACTIVE SIDE PANEL */
+
+.side-panel {
+    position: relative;
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    animation: bg-marquee 30s infinite linear;
+    z-index: -2;
+}
+
+#landing_plane {
+    z-index: 2;
+    transform: translateY(15px);
+    animation: float 4s infinite ease-in-out;
+}
+
+@keyframes bg-marquee {
+    from { background-position-x: 0; }
+    to { background-position-x: -3072px; }
+}
+
+@keyframes float {
+    0% { transform: translateY(15px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(15px); }
 }
