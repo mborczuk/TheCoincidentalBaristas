@@ -20,6 +20,11 @@ app.register_blueprint(auth.bp)
 def landing():
      return render_template('landing.html')
 
+# for testing:
+@app.route("/game")
+def gaming():
+    return render_template('game.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

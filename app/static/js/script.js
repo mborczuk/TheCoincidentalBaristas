@@ -31,7 +31,7 @@ var dFvx = 0;
 var dFvy = 0;
 var lastID = 0;
 var thrown = false;
-var ay = 9.8 * 3780; 
+var ay = 9.8 * 3780;
 var plane = new Image(); // initialize Image object
 plane.src = "../images/paperairplane.png"; // populate with plane image
 var upgrade = (upgradeID, level) => {
@@ -131,7 +131,7 @@ var drawPlane = () => {
   //0.32 is coefficient, .025 is estimated area of paper airplane
   //opposite direction of motion
   var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
-  // 100 kg avg paper mass, F/m = a
+  // 5 kg avg paper mass, F/m = a
   dFvx = dragForce / 5 * time * Math.cos(theta);
   dFvy = dragForce / 5 * time * Math.sin(theta);
   console.log("dragForce:" + dFvx + ", " + dFvy);
