@@ -17,7 +17,7 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0 0 15vh calc(10px + 5vw);
+    padding: 0 0 12vh calc(10px + 7vw);
 
 
     color: var(--white);
@@ -35,8 +35,47 @@ h2 {
 /* LOGISTER */
 
 .logister-container {
-    display: none !important;
+    display: none;
+    gap: 20px;
+    padding: 60px;
+    border-radius: 30px;
+    background-color: var(--white);
 }
+
+.credential-container {
+    display: grid;
+    width: calc(300px + 5vw);
+    align-items: center;
+    grid-template-areas: "icon input";
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+}
+
+.credential-icon {
+    grid-area: icon;
+    height: 22px;
+    transition: fill .1s ease, transform .1s cubic-bezier(.59,1.47,.88,1.37);
+}
+
+.credential-input {
+    grid-area: input;
+    padding: 10px 0px;
+    font-weight: 400;
+    border: none;
+    border-bottom: 2px solid var(--black);
+    transition: border-color .1s ease;
+}
+
+.credential-input:focus-visible {
+    outline: none !important;
+    border-color: var(--dark-red);
+}
+
+.credential-input:focus-visible ~ .credential-icon {
+    fill: var(--dark-red) !important;
+    transform: translateX(-5px);
+}
+
 
 .btn-container {
     display: flex;

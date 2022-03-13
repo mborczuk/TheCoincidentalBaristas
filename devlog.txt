@@ -59,3 +59,6 @@ Create landing page layout. Added landing marquee and airplane bop animations.
 
 danielS -- 2022-03-12 21:14
 Add button styling.
+
+danielS -- 2022-03-13 17:58
+Add login panel.
