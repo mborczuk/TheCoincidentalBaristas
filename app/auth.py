@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, request, session, render_template, redirect, g
 from functools import wraps
 import os, sqlite3, json, urllib
+import db_builder
 
 bp = Blueprint('auth', __name__)
 
@@ -65,10 +66,11 @@ def register():
             session['username'] = new_username
             return redirect("/")
 
-    if logged_in():
-        return redirect("/")
-    else:
-        return render_template('register.html')
+    if request.method == 'GET':
+        if logged_in():
+            return redirect("/")
+        else:
+            return render_template('register.html')
 
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():
