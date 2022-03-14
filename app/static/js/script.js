@@ -30,7 +30,7 @@ var ay = 9.8 * 3780;
 // drag
 var dFvx = 0;
 var dFvy = 0;
-// var dragUpgrade =
+var dragUpgrade = 0;
 var mass = 20;
 
 // mouse
@@ -59,7 +59,7 @@ var upgrade = (upgradeID, level) => {
       console.log(ay);
       break;
     case 1: // speed upgrade
-      // change int var's value, to be used with calculating drag
+      dragUpgrade = level;
       break;
     case 2: // crane duration upgrade
       craneTime = level * 2 + 3;
@@ -165,6 +165,7 @@ var drawPlane = () => {
   //0.32 is coefficient, .025 is estimated area of paper airplane
   //opposite direction of motion
   var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
+  dragForce *= (1 - 0.1 * dragUpgrade);
   // 5 kg avg paper mass, F/m = a
   dFvx = dragForce / mass * time * Math.cos(theta);
   dFvy = dragForce / mass * time * Math.sin(theta);
