@@ -62,3 +62,6 @@ Add button styling.
 
 danielS -- 2022-03-13 17:58
 Add login panel.
+
+shyneC -- 2022-03-13 21:23
+Add variables and base for speed(ish), crane, throwing, lightweight upgrades. Started calculation of flight stats.

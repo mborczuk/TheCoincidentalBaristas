@@ -10,12 +10,13 @@ var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
 
+// img
 var imgWidth = 100;
 var imgHeight = 50;
-
 var imgX = 0;
 var imgY = 300;
 
+// velocity + position, time, acceleration
 var velocity = 150;
 var theta = 1;
 var vx = velocity * Math.cos(theta);
@@ -24,22 +25,51 @@ var dx = 0;
 var dy = 0;
 var date = new Date();
 var starttime = date.getTime();
+var ay = 9.8 * 3780;
+
+// drag
+var dFvx = 0;
+var dFvy = 0;
+// var dragUpgrade =
+var mass = 5;
+
+// mouse
 var mouseX;
 var mouseY;
 var mouseDown;
-var dFvx = 0;
-var dFvy = 0;
+
 var lastID = 0;
 var thrown = false;
-var ay = 9.8 * 3780;
 var plane = new Image(); // initialize Image object
 plane.src = "../images/paperairplane.png"; // populate with plane image
+
+// stars (flight stats)
+var stars = 0; // add to as collected
+var starWorth = 5; // increase with upgrade
+
+// cranes
+var craneTime = 3; // starting crane multiplier lasts 3s?
+
+var velocityUpscale = 0;
+
 var upgrade = (upgradeID, level) => {
   switch(upgradeID) {
     case 0: // weight upgrade
       ay = 9.8 * 3780 - (0.5 * level);
       break;
-    case 1:
+    case 1: // speed upgrade
+      // change int var's value, to be used with calculating drag
+      break;
+    case 2: // crane duration upgrade
+      craneTime = level * 2 + 3;
+      break;
+    case 3: // throwing power upgrade
+      velocityUpscale = level;
+      break;
+    case 4: // lightweight upgrade
+      mass = 5 - 0.1 * level;
+      break;
+    case 5:
       console.log("bye");
       break;
     default:
@@ -93,7 +123,10 @@ var mouseUpFunc = (e) => {
     }
     if(e.offsetX >= mouseX) { // can only throw to the right
       // TODO - fix bug in throwing
-      velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time); // set velocity using distance formula, scale because otherwise the plane will never take off
+
+      // set velocity using distance formula, scale because otherwise the plane will never take off
+      velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
+      velocity *= (1 + 0.1 * velocityUpscale); //Throwing Power Upgrade
       theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
       vx = velocity * Math.cos(theta); // get x and y components of velocity
       vy = -1 * velocity * Math.sin(theta);
@@ -132,8 +165,8 @@ var drawPlane = () => {
   //opposite direction of motion
   var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
   // 5 kg avg paper mass, F/m = a
-  dFvx = dragForce / 5 * time * Math.cos(theta);
-  dFvy = dragForce / 5 * time * Math.sin(theta);
+  dFvx = dragForce / mass * time * Math.cos(theta);
+  dFvy = dragForce / mass * time * Math.sin(theta);
   console.log("dragForce:" + dFvx + ", " + dFvy);
   // console.log("velocity:" + dx+ ", " + dy)
   dx = (vx - dFvx) * time;
