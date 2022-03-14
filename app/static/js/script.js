@@ -31,7 +31,7 @@ var ay = 9.8 * 3780;
 var dFvx = 0;
 var dFvy = 0;
 // var dragUpgrade =
-var mass = 5;
+var mass = 20;
 
 // mouse
 var mouseX;
@@ -76,7 +76,7 @@ var upgrade = (upgradeID, level) => {
     default:
       console.log("aksjdhajsd");
   }
-}; 
+};
 var mouseDownFunc = (e) => {
   if(!thrown) {
     mouseX = e.offsetX;
