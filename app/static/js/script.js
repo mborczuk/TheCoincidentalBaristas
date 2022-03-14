@@ -37,7 +37,8 @@ plane.src = "../images/paperairplane.png"; // populate with plane image
 var upgrade = (upgradeID, level) => {
   switch(upgradeID) {
     case 0: // weight upgrade
-      ay = 9.8 * 3780 - (0.5 * level);
+      ay = ay - 10000;
+      console.log(ay);
       break;
     case 1:
       console.log("bye");
@@ -45,7 +46,7 @@ var upgrade = (upgradeID, level) => {
     default:
       console.log("aksjdhajsd");
   }
-}
+}; 
 var mouseDownFunc = (e) => {
   if(!thrown) {
     mouseX = e.offsetX;
@@ -132,8 +133,8 @@ var drawPlane = () => {
   //opposite direction of motion
   var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
   // 100 kg avg paper mass, F/m = a
-  dFvx = dragForce / 5 * time * Math.cos(theta);
-  dFvy = dragForce / 5 * time * Math.sin(theta);
+  dFvx = dragForce / 25 * time * Math.cos(theta);
+  dFvy = dragForce / 25 * time * Math.sin(theta);
   console.log("dragForce:" + dFvx + ", " + dFvy);
   // console.log("velocity:" + dx+ ", " + dy)
   dx = (vx - dFvx) * time;
@@ -142,9 +143,9 @@ var drawPlane = () => {
   // actual distance the plane SHOULD have gone
   realX += dx; // distance
   realY += dy; // altitude
-  // scale down distance so it looks normal
-  imgX += dx / 20;
-  imgY += dy / 20;
+  // scale down distance so it looks normal (maybe change)
+  imgX += dx / 30;
+  imgY += dy / 30;
   ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
 
   if(imgY >= 800) {
