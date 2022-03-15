@@ -143,7 +143,7 @@ var mouseUpFunc = (e) => {
     // console.log(time);
     mouseDown = false; // mouse is not down anymore
     if(e.offsetX == mouseX) {
-      console.log("lol"); // do nothing if the positions are the same
+      // do nothing if the positions are the same
       clear(null);
       return;
     }
@@ -172,26 +172,44 @@ var mouseUpFunc = (e) => {
   }
 }
 
+// FIX THIS 
 var keyPressed = (e) => {
   if(thrown) {
-    if(e.key == 'a') {
-      if(theta < Math.PI / 2) {
-        theta = Math.min(Math.PI / 2, theta + 5 * (Math.PI / 180));
+    // first half of projectile motion
+    if(theta > 0) {
+      if(e.key == 'a') {
+        if(theta < 1.5) { // plane can be changed within the range of 0.5 to 1.5 rad, can maybe be changed w upgrades 
+          theta = Math.min(1.5, theta + 5 * (Math.PI / 180));
+          vx = velocity * Math.cos(theta); // get x and y components of velocity
+          vy = -1 * velocity * Math.sin(theta);
+        }
+      }
+      if(e.key == 'd') {
+        theta = Math.max(0.5, theta - 5 * (Math.PI / 180)); // 1 bc otherwise we get weird issues with 0 (and then the plane just flies horizontally forever)
+        // can be upgraded with rudder upgrades
         vx = velocity * Math.cos(theta); // get x and y components of velocity
         vy = -1 * velocity * Math.sin(theta);
-        // console.log(theta * 180 / Math.PI);
       }
     }
-    if(e.key == 'd') {
-      if(theta > 0) {
-        theta = Math.max(0, theta - 5 * (Math.PI / 180));
+    // second half of projectile motion
+    if(theta < 0) {
+      if(e.key == 'a') {
+        theta = Math.min(-0.5, theta + 5 * (Math.PI / 180));
         vx = velocity * Math.cos(theta); // get x and y components of velocity
         vy = -1 * velocity * Math.sin(theta);
-        // console.log(theta * 180 / Math.PI);
+      }
+      if(e.key == 'd') {
+        if(theta > -1.5) {
+          theta = Math.max(-1.5, theta - 5 * (Math.PI / 180));
+          vx = velocity * Math.cos(theta); // get x and y components of velocity
+          vy = -1 * velocity * Math.sin(theta);
+        }
       }
     }
+    
   }
 }
+
 var drawPlane = () => {
   // clear(null);
   // console.log(velocity);
@@ -203,7 +221,7 @@ var drawPlane = () => {
   var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
   starttime = date.getTime();
   vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
-  // velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
+  velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
   theta = Math.atan(vy / vx) * -1; // recalculate theta
   console.log(theta);
   //F_drag = 0.5pCAv^2
@@ -225,8 +243,11 @@ var drawPlane = () => {
   // scale down distance so it looks normal (maybe change)
   imgX += dx / 40;
   imgY += dy / 40;
-  ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
-
+  ctx.translate(imgX + (imgWidth / 2), imgY + (imgHeight / 2)); // move origin to center of plane
+  ctx.rotate(-theta); // rotate by theta
+  ctx.translate(-(imgX + (imgWidth / 2)), -(imgY + (imgHeight / 2))); // move origin back to (0, 0)
+  ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight); // draw the rotated image
+  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
   if(imgY >= 800) {
     console.log("hori: " + (realX / 3780)); // actual horizontal distance
     thrown = false;
@@ -235,11 +256,11 @@ var drawPlane = () => {
 };
 
 var gameLoop = () => {
-  clear();
+  clear(null);
   draw_bg();
   bg_offset_x -= dx * 0.001;
   bg_offset_x = wrap(bg_offset_x, -1 * c.clientWidth, 0);
-  // console.log("OFFSET" + bg_offset_x);
+  // // console.log("OFFSET" + bg_offset_x);
   mg_offset_x -= dx * 0.005;
   mg_offset_x = wrap(mg_offset_x, -1 * c.clientWidth, 0);
 
