@@ -16,6 +16,29 @@ var imgHeight = 50;
 var imgX = 0;
 var imgY = 300;
 
+// Background Setup ================================
+var level = 1;
+
+// Get ground images
+var bg = new Image();
+bg.src = `../images/bg${level}.png`;
+
+var mg = new Image();
+mg.src = `../images/m${level}.png`;
+
+var fg = new Image();
+fg.src = `../images/g${level}.png`;
+
+// Ground horizontal offsets
+bg_offset_x = 0;
+mg_offset_x = 0;
+fg_offset_x = 0;
+
+// Ground vertical offsets
+bg_offset_y = 0;
+mg_offset_y = c.clientHeight - (mg.height / 3)
+fg_offset_y = c.clientHeight - (fg.height / 2);
+
 // velocity + position, time, acceleration
 var velocity = 150;
 var theta = 1;
@@ -30,7 +53,7 @@ var ay = 9.8 * 3780;
 // drag
 var dFvx = 0;
 var dFvy = 0;
-// var dragUpgrade =
+var dragUpgrade = 0;
 var mass = 20;
 
 // mouse
@@ -59,7 +82,7 @@ var upgrade = (upgradeID, level) => {
       console.log(ay);
       break;
     case 1: // speed upgrade
-      // change int var's value, to be used with calculating drag
+      dragUpgrade = level;
       break;
     case 2: // crane duration upgrade
       craneTime = level * 2 + 3;
@@ -76,7 +99,7 @@ var upgrade = (upgradeID, level) => {
     default:
       console.log("aksjdhajsd");
   }
-}; 
+};
 var mouseDownFunc = (e) => {
   if(!thrown) {
     mouseX = e.offsetX;
@@ -187,6 +210,7 @@ var drawPlane = () => {
   //0.32 is coefficient, .025 is estimated area of paper airplane
   //opposite direction of motion
   var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
+  dragForce *= (1 - 0.1 * dragUpgrade);
   // 5 kg avg paper mass, F/m = a
   dFvx = dragForce / mass * time * Math.cos(theta);
   dFvy = dragForce / mass * time * Math.sin(theta);
@@ -211,12 +235,27 @@ var drawPlane = () => {
 };
 
 var gameLoop = () => {
-  if(thrown) {
+  clear();
+  draw_bg();
+  bg_offset_x -= dx * 0.001;
+  bg_offset_x = wrap(bg_offset_x, -1 * c.clientWidth, 0);
+  // console.log("OFFSET" + bg_offset_x);
+  mg_offset_x -= dx * 0.005;
+  mg_offset_x = wrap(mg_offset_x, -1 * c.clientWidth, 0);
+
+  fg_offset_x -= dx * 0.01;
+  fg_offset_x = wrap(fg_offset_x, -1 * c.clientWidth, 0);
+  
+  // console.log(translate_matrix);
+
+  if (thrown) {
     drawPlane();
   }
+  
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
 }
+
 var stopIt = () => {
   console.log("stopIt invoked...");
   console.log( requestID );
@@ -230,17 +269,48 @@ document.addEventListener('keydown', keyPressed);
 // Decimal between 0-1
 var loop_progress = 0;
 
-function draw_bg(level) {
-  // create new image object to use as pattern
-  var bg = new Image();
-  bg.src = `../images/bg${level}.png`;
-  bg.onload = function() {
+function wrap(n, min, max) {
+  if (n < min) {
+    return max - Math.abs(min - n);
+  } 
+  else if (n > max) {
+    return min + Math.abs(n - max);
+  } 
+  return n;
+}
 
-    // create pattern
-    var bg_ptrn = ctx.createPattern(bg, 'repeat');
-    ctx.fillStyle = bg_ptrn;
-    ctx.fillRect(0, 0, c.clientWidth, bg.height);
+function fill_image(img, initial_x, y, img_width, img_height) {
+  for (let w = initial_x; w < c.clientWidth * 2; w += img_width) {
+    // console.log("W:" + w);
+    ctx.drawImage(img, 
+      initial_x + w, y, 
+      img_width, img_height
+    );
   }
+}
+
+function draw_bg() {
+  fill_image(bg, bg_offset_x, bg_offset_y, c.clientWidth, c.clientHeight);
+  fill_image(mg, mg_offset_x, mg_offset_y, mg.width / 2, mg.height / 2);
+  fill_image(fg, fg_offset_x, fg_offset_y, fg.width / 2, fg.height / 2);
+  // fill_image(fg, fg_offset_x, fg_offset_y, fg.width / 2, fg.height / 2);
+  // ctx.drawImage(bg, 
+  //   bg_offset_x, 
+  //   bg_offset_y, 
+  //   c.clientWidth, bg.height
+  // );
+
+  // ctx.drawImage(mg, 
+  //   mg_offset_x, 
+  //   mg_offset_y, 
+  //   mg.width / 2, mg.height / 2
+  // );
+
+  // ctx.drawImage(fg, 
+  //   fg_offset_x, 
+  //   fg_offset_y, 
+  //   fg.width / 2, fg.height / 2
+  // );
 }
 
 gameLoop();
