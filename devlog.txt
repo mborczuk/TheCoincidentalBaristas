@@ -65,3 +65,6 @@ Add login panel.
 
 shyneC -- 2022-03-13 21:23
 Add variables and base for speed(ish), crane, throwing, lightweight upgrades. Started calculation of flight stats.
+
+michaelB -- 2022-03-15 08:02
+Add rudder system (turning of the plane).

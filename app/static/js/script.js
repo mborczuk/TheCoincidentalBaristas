@@ -31,7 +31,7 @@ var ay = 9.8 * 3780;
 var dFvx = 0;
 var dFvy = 0;
 // var dragUpgrade =
-var mass = 5;
+var mass = 20;
 
 // mouse
 var mouseX;
@@ -106,7 +106,7 @@ var mouseMoveFunc = (e) => {
     //console.log("h");
     // ctx.fillRect(e.offsetX, e.offsetY, 5, 5); // draw line
     ctx.fillStyle = "black";
-    clear(null);
+    // clear(null);
     ctx.drawImage(plane, e.offsetX - imgWidth / 2, e.offsetY - imgHeight / 2, imgWidth, imgHeight);
   }
 
@@ -121,14 +121,16 @@ var mouseUpFunc = (e) => {
     mouseDown = false; // mouse is not down anymore
     if(e.offsetX == mouseX) {
       console.log("lol"); // do nothing if the positions are the same
+      clear(null);
+      return;
     }
     if(e.offsetX >= mouseX) { // can only throw to the right
       // TODO - fix bug in throwing
 
       // set velocity using distance formula, scale because otherwise the plane will never take off
-      velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
+      velocity = 40000;// 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
       velocity *= (1 + 0.1 * velocityUpscale); //Throwing Power Upgrade
-      theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
+      theta = Math.PI / 4; // Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
       vx = velocity * Math.cos(theta); // get x and y components of velocity
       vy = -1 * velocity * Math.sin(theta);
       ctx.fillStyle = "green";
@@ -147,9 +149,28 @@ var mouseUpFunc = (e) => {
   }
 }
 
-
+var keyPressed = (e) => {
+  if(thrown) {
+    if(e.key == 'a') {
+      if(theta < Math.PI / 2) {
+        theta = Math.min(Math.PI / 2, theta + 5 * (Math.PI / 180));
+        vx = velocity * Math.cos(theta); // get x and y components of velocity
+        vy = -1 * velocity * Math.sin(theta);
+        // console.log(theta * 180 / Math.PI);
+      }
+    }
+    if(e.key == 'd') {
+      if(theta > 0) {
+        theta = Math.max(0, theta - 5 * (Math.PI / 180));
+        vx = velocity * Math.cos(theta); // get x and y components of velocity
+        vy = -1 * velocity * Math.sin(theta);
+        // console.log(theta * 180 / Math.PI);
+      }
+    }
+  }
+}
 var drawPlane = () => {
-  clear(null);
+  // clear(null);
   // console.log(velocity);
   // console.log(lastID);
   // var plane = new Image(); // initialize Image object
@@ -159,8 +180,9 @@ var drawPlane = () => {
   var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
   starttime = date.getTime();
   vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
-  console.log(ay);
-
+  // velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
+  theta = Math.atan(vy / vx) * -1; // recalculate theta
+  console.log(theta);
   //F_drag = 0.5pCAv^2
   //0.32 is coefficient, .025 is estimated area of paper airplane
   //opposite direction of motion
@@ -168,7 +190,7 @@ var drawPlane = () => {
   // 5 kg avg paper mass, F/m = a
   dFvx = dragForce / mass * time * Math.cos(theta);
   dFvy = dragForce / mass * time * Math.sin(theta);
-  console.log("dragForce:" + dFvx + ", " + dFvy);
+  // console.log("dragForce:" + dFvx + ", " + dFvy);
   // console.log("velocity:" + dx+ ", " + dy)
   dx = (vx - dFvx) * time;
   dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
@@ -177,8 +199,8 @@ var drawPlane = () => {
   realX += dx; // distance
   realY += dy; // altitude
   // scale down distance so it looks normal (maybe change)
-  imgX += dx / 30;
-  imgY += dy / 30;
+  imgX += dx / 40;
+  imgY += dy / 40;
   ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
 
   if(imgY >= 800) {
@@ -192,12 +214,11 @@ var gameLoop = () => {
   if(thrown) {
     drawPlane();
   }
-
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
 }
 var stopIt = () => {
-  console.log("stopIt invoked...")
+  console.log("stopIt invoked...");
   console.log( requestID );
   window.cancelAnimationFrame(requestID);
 };
@@ -205,6 +226,7 @@ var stopIt = () => {
 c.addEventListener('mousedown', mouseDownFunc);
 c.addEventListener('mousemove', mouseMoveFunc);
 c.addEventListener('mouseup', mouseUpFunc);
+document.addEventListener('keydown', keyPressed);
 // Decimal between 0-1
 var loop_progress = 0;
 
