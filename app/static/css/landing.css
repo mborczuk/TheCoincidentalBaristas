@@ -42,6 +42,8 @@ h2 {
     background-color: var(--white);
 }
 
+/* Input Styling */
+
 .credential-container {
     display: grid;
     width: calc(300px + 5vw);
@@ -76,11 +78,15 @@ h2 {
     transform: translateX(-5px);
 }
 
+/* Button Styling */
 
 .btn-container {
     display: flex;
     flex-flow: row wrap;
     gap: 20px;
+}
+
+.header-container > .btn-container {
     margin-top: 30px;
 }
 

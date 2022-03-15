@@ -71,3 +71,12 @@ Finish speed upgrade
 
 danielS -- 2022-03-14 21:36
 Add background motion.
+
+danielS -- 2022-03-15 16:46
+Reorganized script.js into modular javascript files. Added draw.js, game.js, physics.js, throw.js, upgrades.js.
+Script.js sets up canvas context & settings. Game.js runs the game.
+Update function & variable names to better represent their actual functions.
+Update game loop to update offset & plane coordinates on throw. 
+Split paper airplane image into frames.
+Changed canvas and plane dimensions.
+Fix page not loading: Images are only drawn after they have been loaded.

@@ -19,7 +19,7 @@
         <h1>Untitled Plane Game</h1>
         <h2 class="thin">by The Coincidental Baristas</h2>
         <div class="btn-container">
-            <button id="play-btn" type="button" class="btn btn-lg btn-fill">Play</button>
+            <a href="game" id="play-btn" type="button" class="btn btn-lg btn-fill">Play</a>
             <button id="logister-toggle" type="button" class="btn btn-lg btn-outline">Login</button>
         </div>
     </div>
@@ -29,28 +29,50 @@
         <div id="design-container">
             <img id="landing_plane" src="{{ url_for('static', filename='images/landing_plane.png') }}">
         </div>
-        <form class="login-container" action="/login" method="POST">
+        <form action="/login" method="POST">
             <div class="logister-container" id="login-container">
                 <h2>Login</h2>
                 <div class="credential-container">
-                    <input name="login-username" class="credential-input" type="text" placeholder="Username">
+                    <input name="username" class="credential-input" type="text" placeholder="Username">
                     <svg xmlns="http://www.w3.org/2000/svg" class="credential-icon bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                     </svg>
                 </div>
                 <div class="credential-container">
-                    <input name="login-password" class="credential-input" type="password" placeholder="Password">
+                    <input name="password" class="credential-input" type="password" placeholder="Password">
                     <svg xmlns="http://www.w3.org/2000/svg" class="credential-icon bi bi-lock" viewBox="0 0 16 16">
                         <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
                     </svg>
                 </div>
                 <span class="error">{{ error }}</span>
-                <button type="submit" class="btn btn-fill">Login</button>
+                <div class="btn-container">
+                    <button id="register-submit" type="submit" class="btn btn-fill">Login</button>
+                    <button id="register-toggle" type="button" class="btn btn-outline">Register</button>
+                </div>
             </div>
         </form>
-        <div class="logister-container" id="register-container">
-            <h2>Register</h2>
-        </div>
+        <form action="/register" method="POST">
+            <div class="logister-container" id="register-container">
+                <h2>Register</h2>
+                <div class="credential-container">
+                    <input name="username" class="credential-input" type="text" placeholder="Username">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="credential-icon bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                </div>
+                <div class="credential-container">
+                    <input name="password" class="credential-input" type="password" placeholder="Password">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="credential-icon bi bi-lock" viewBox="0 0 16 16">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                    </svg>
+                </div>
+                <span class="error">{{ error }}</span>
+                <div class="btn-container">
+                    <button id="login-toggle" type="button" class="btn btn-outline">Login</button>
+                    <button id="register-submit" type="submit" class="btn btn-fill">Register</button>
+                </div>
+            </div>
+        </form>
     </div>
   </div>
   <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
