@@ -96,5 +96,11 @@ Fix rotation (again). Update theta each frame.
 michaelB -- 2022-03-16 08:09
 Fix bug in velocity calculation after refactoring.
 
+danielS -- 2022-03-16 08:36
+Modularize physics.js.
+
 michaelB -- 2022-03-16 09:27
 Add plane landing system.
+
+
+
