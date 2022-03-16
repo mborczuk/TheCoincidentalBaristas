@@ -88,4 +88,4 @@ Changed canvas and plane dimensions.
 Fix page not loading: Images are only drawn after they have been loaded.
 
 danielS -- 2022-03-15 20:33
-Fix throwing.
+Fix throwing. Fix rotation.

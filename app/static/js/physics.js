@@ -26,6 +26,7 @@ function update_plane() {
 
     // Recalculate velocity
     vy = vy + ay * time; 
+    velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
     // console.log(ay);
   
     // F_drag = 0.5pCAv^2

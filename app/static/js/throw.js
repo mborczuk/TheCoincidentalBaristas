@@ -97,3 +97,4 @@ var keyPressed = (e) => {
 c.addEventListener('mousedown', grab_airplane);
 c.addEventListener('mousemove', hold_airplane);
 c.addEventListener('mouseup', throw_airplane);
+document.addEventListener('keydown', keyPressed);
