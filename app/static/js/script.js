@@ -13,8 +13,8 @@ var clear = (e) => {
 // img
 var imgWidth = 100;
 var imgHeight = 50;
-var imgX = 0;
-var imgY = 300;
+var imgX = 100;
+var imgY = 630;
 
 // Background Setup ================================
 var level = 1;
@@ -49,12 +49,15 @@ var dy = 0;
 var date = new Date();
 var starttime = date.getTime();
 var ay = 9.8 * 3780;
+var mass = 20;
+var kineticFrictionCoefficient = 0.7;
+var ax = -ay * kineticFrictionCoefficient;
 
 // drag
 var dFvx = 0;
 var dFvy = 0;
 var dragUpgrade = 0;
-var mass = 20;
+
 
 // mouse
 var mouseX;
@@ -123,14 +126,15 @@ var mouseMoveFunc = (e) => {
     // var plane = new Image(); // initialize Image object
     // plane.src = "../images/paperairplane.png"; // populate with plane image
     // // clear(null);
-    // // ctx.drawImage(plane, e.offsetX - imgWidth / 2, e.offsetY - imgHeight / 2, imgWidth, imgHeight); // this looks terrible
+    // ctx.drawImage(plane, e.offsetX - imgWidth / 2, e.offsetY - imgHeight / 2, imgWidth, imgHeight); // this looks terrible
   }
   if(mouseDown == true) {
     //console.log("h");
     // ctx.fillRect(e.offsetX, e.offsetY, 5, 5); // draw line
     ctx.fillStyle = "black";
-    // clear(null);
-    ctx.drawImage(plane, e.offsetX - imgWidth / 2, e.offsetY - imgHeight / 2, imgWidth, imgHeight);
+    clear(null);
+    imgX = e.offsetX - imgWidth / 2;
+    imgY = e.offsetY - imgHeight / 2;
   }
 
 }
@@ -151,9 +155,9 @@ var mouseUpFunc = (e) => {
       // TODO - fix bug in throwing
 
       // set velocity using distance formula, scale because otherwise the plane will never take off
-      velocity = 40000;// 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
+      velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
       velocity *= (1 + 0.1 * velocityUpscale); //Throwing Power Upgrade
-      theta = Math.PI / 4; // Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
+      theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
       vx = velocity * Math.cos(theta); // get x and y components of velocity
       vy = -1 * velocity * Math.sin(theta);
       ctx.fillStyle = "green";
@@ -220,22 +224,29 @@ var drawPlane = () => {
   // this is the time BETWEEN frames
   var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
   starttime = date.getTime();
-  vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
-  velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
-  theta = Math.atan(vy / vx) * -1; // recalculate theta
-  console.log(theta);
-  //F_drag = 0.5pCAv^2
-  //0.32 is coefficient, .025 is estimated area of paper airplane
-  //opposite direction of motion
-  var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
-  dragForce *= (1 - 0.1 * dragUpgrade);
-  // 5 kg avg paper mass, F/m = a
-  dFvx = dragForce / mass * time * Math.cos(theta);
-  dFvy = dragForce / mass * time * Math.sin(theta);
-  // console.log("dragForce:" + dFvx + ", " + dFvy);
-  // console.log("velocity:" + dx+ ", " + dy)
-  dx = (vx - dFvx) * time;
-  dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
+  if(imgY < 630) {
+    vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
+    velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
+    theta = Math.atan(vy / vx) * -1; // recalculate theta
+    console.log(theta);
+    //F_drag = 0.5pCAv^2
+    //0.32 is coefficient, .025 is estimated area of paper airplane
+    //opposite direction of motion
+    var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
+    dragForce *= (1 - 0.1 * dragUpgrade);
+    // 5 kg avg paper mass, F/m = a
+    dFvx = dragForce / mass * time * Math.cos(theta);
+    dFvy = dragForce / mass * time * Math.sin(theta);
+    // console.log("dragForce:" + dFvx + ", " + dFvy);
+    // console.log("velocity:" + dx+ ", " + dy)
+    dx = (vx - dFvx) * time;
+    dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
+  } else {
+    theta = 0;
+    dy = 0;
+    vx = vx + ax * time;
+    dx = (vx) * time;
+  }
   // console.log("velocity:" + dx+ ", " + dy)
   // actual distance the plane SHOULD have gone
   realX += dx; // distance
@@ -243,12 +254,13 @@ var drawPlane = () => {
   // scale down distance so it looks normal (maybe change)
   imgX += dx / 40;
   imgY += dy / 40;
+  console.log(imgY);
   ctx.translate(imgX + (imgWidth / 2), imgY + (imgHeight / 2)); // move origin to center of plane
   ctx.rotate(-theta); // rotate by theta
   ctx.translate(-(imgX + (imgWidth / 2)), -(imgY + (imgHeight / 2))); // move origin back to (0, 0)
   ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight); // draw the rotated image
   ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
-  if(imgY >= 800) {
+  if(dx <= 0) {
     console.log("hori: " + (realX / 3780)); // actual horizontal distance
     thrown = false;
     stopIt();
@@ -268,6 +280,10 @@ var gameLoop = () => {
   fg_offset_x = wrap(fg_offset_x, -1 * c.clientWidth, 0);
   
   // console.log(translate_matrix);
+  if(!thrown) {
+    ctx.drawImage(plane, imgX, imgY, imgWidth, imgHeight);
+  }
+
 
   if (thrown) {
     drawPlane();
