@@ -86,3 +86,6 @@ Update game loop to update offset & plane coordinates on throw.
 Split paper airplane image into frames.
 Changed canvas and plane dimensions.
 Fix page not loading: Images are only drawn after they have been loaded.
+
+danielS -- 2022-03-15 20:33
+Fix throwing.

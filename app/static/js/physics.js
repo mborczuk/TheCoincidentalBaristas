@@ -46,8 +46,8 @@ function update_plane() {
     realX += dx; // distance
     realY += dy; // altitude
     // scale down distance so it looks normal (maybe change)
-    imgX += dx / 40;
-    imgY += dy / 40;
+    planeX += dx / 40;
+    planeY += dy / 40;
     
     ctx.translate(planeX + (planeWidth / 2), planeY + (planeHeight / 2)); // move origin to center of plane
     ctx.rotate(-theta); // rotate by theta
