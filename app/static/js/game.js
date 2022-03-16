@@ -27,6 +27,7 @@ var gameLoop = () => {
   }
 
   draw_plane();
+  display_altitude();
 
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);

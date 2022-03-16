@@ -8,11 +8,13 @@
 {% block content %}
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
+    <span id="altitude">0</span>
   </div>
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="{{ url_for('static', filename='js/physics.js') }}"></script>
   <script src="{{ url_for('static', filename='js/draw.js') }}"></script>
   <script src="{{ url_for('static', filename='js/throw.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/hud.js') }}"></script>
   <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 {% endblock %}

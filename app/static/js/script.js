@@ -7,6 +7,9 @@ var requestID;
 var mouseX;
 var mouseY;
 
+var altitude = 0;
+var distance = 0;
+
 var planeX = 10;
 var planeY = 428;
 var thrown = false;

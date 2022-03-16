@@ -46,27 +46,30 @@ function update_delta(time) {
   // console.log("velocity:" + dx+ ", " + dy)
 }
 
+function land_plane() {
+  if (dx <= 0) {
+    console.log("hori: " + (distance / 3780)); // actual horizontal distance
+    thrown = false;
+    stopIt();
+  }
+}
+
 function update_plane() {
     // console.log(velocity);
     // update_velocity();
-
     // Time in between frames
     var date = new Date();
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
     starttime = date.getTime();
-    console.log(planeY);
-    if(planeY <= 428) {
+
+    if (altitude > 0) {
       update_velocity(time);
       theta = Math.atan(vy / vx) * -1; // recalculate theta
-      // console.log(theta);
-      //F_drag = 0.5pCAv^2
-      //0.32 is coefficient, .025 is estimated area of paper airplane
-      //opposite direction of motion
       update_drag(time);
-      // console.log("dragForce:" + dFvx + ", " + dFvy);
-      // console.log("velocity:" + dx+ ", " + dy)
       update_delta(time);
+
     } else {
+      planeY = ground_y - planeHeight;
       theta = 0;
       dy = 0;
       vx = vx + ax * time;
@@ -74,14 +77,11 @@ function update_plane() {
     }
 
     // actual distance the plane SHOULD have gone
-    realX += dx; // distance
-    realY += dy; // altitude
+    distance += dx; 
+    altitude -= dy / 40;
+
     // planeX += dx / 40;
-    // planeY += dy / 40;
-    if(dx <= 0) {
-      console.log("hori: " + (realX / 3780)); // actual horizontal distance
-      thrown = false;
-      stopIt();
-    }
+    planeY += dy / 40;
+    land_plane();
   };
   

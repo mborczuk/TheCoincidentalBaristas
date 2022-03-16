@@ -25,6 +25,7 @@ var hold_airplane = (e) => {
     if (mouseDown) {
         planeX = e.offsetX - planeWidth / 2;
         planeY = e.offsetY - planeHeight / 2;
+        altitude = -1 * (e.offsetY - ground_y + planeHeight / 2);
     }
 }
 
@@ -36,7 +37,7 @@ var throw_airplane = (e) => {
         // TODO - fix bug in throwing
         var new_date = new Date();
         var time = (new_date.getTime() - starttime) / 1000;
-        console.log(time);
+        // console.log(time);
         starttime = new_date.getTime();
         // set velocity using distance formula, scale because otherwise the plane will never take off
         velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
@@ -44,16 +45,10 @@ var throw_airplane = (e) => {
         theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
         vx = velocity * Math.cos(theta); // get x and y components of velocity
         vy = -1 * velocity * Math.sin(theta);
-        ctx.fillStyle = "green";
-        ctx.fillRect(e.offsetX, e.offsetY, 5, 5);
-        //console.log(e.offsetX - mouseX);
-        console.log("velocity" + velocity);
-        console.log("theta " + theta * 180 / Math.PI);
+        
         thrown = true; // the plane has been thrown
-        imgX = e.offsetX - planeWidth / 2; // draw image so center is at mouseX and mouseY
-        imgY = e.offsetY - planeHeight / 2;
-        realX = e.offsetX - planeWidth / 2; // draw image so center is at mouseX and mouseY
-        realY = e.offsetY - planeHeight / 2;
+        
+        altitude = -1 * (e.offsetY - ground_y + planeHeight / 2);
         date = new Date();
         starttime = date.getTime();
       }
