@@ -46,13 +46,16 @@ function update_plane() {
     realX += dx; // distance
     realY += dy; // altitude
     // scale down distance so it looks normal (maybe change)
-    planeX += dx / 30;
-    planeY += dy / 30;
+    imgX += dx / 40;
+    imgY += dy / 40;
     
-    // if (planeY >= 800) {
-    //   console.log("hori: " + (realX / 3780)); // actual horizontal distance
-    //   thrown = false;
-    //   stopIt();
-    // }
+    ctx.translate(planeX + (planeWidth / 2), planeY + (planeHeight / 2)); // move origin to center of plane
+    ctx.rotate(-theta); // rotate by theta
+    ctx.translate(-(planeX + (planeWidth / 2)), -(planeY + (planeHeight / 2))); // move origin back to (0, 0)
+
+    // if(planeY >= 800) {
+    //     console.log("hori: " + (realX / 3780)); // actual horizontal distance
+    //     thrown = false;
+    // stopIt();
   };
   

@@ -15,7 +15,7 @@ var clear = (e) => {
 };
 
 var stopIt = () => {
-  console.log("stopIt invoked...")
+  console.log("stopIt invoked...");
   console.log( requestID );
   window.cancelAnimationFrame(requestID);
 };

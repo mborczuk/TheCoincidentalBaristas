@@ -72,6 +72,12 @@ Finish speed upgrade
 danielS -- 2022-03-14 21:36
 Add background motion.
 
+michaelB -- 2022-03-15 08:02
+Add rudder system (turning of the plane).
+
+michaelB -- 2022-03-15 12:13
+Plane now rotates properly in flight. Fix rudder system (known) bugs.
+
 danielS -- 2022-03-15 16:46
 Reorganized script.js into modular javascript files. Added draw.js, game.js, physics.js, throw.js, upgrades.js.
 Script.js sets up canvas context & settings. Game.js runs the game.
