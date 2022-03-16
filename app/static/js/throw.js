@@ -31,13 +31,16 @@ var throw_airplane = (e) => {
     if(!thrown) {
         // console.log(e.offsetX);
       mouseDown = false; // mouse is not down anymore
-      if(e.offsetX >= mouseX) { // can only throw to the right
+      if(e.offsetX > mouseX) { // can only throw to the right
         // TODO - fix bug in throwing
-  
+        var new_date = new Date();
+        var time = (new_date.getTime() - starttime) / 1000;
+        console.log(time);
+        starttime = new_date.getTime();
         // set velocity using distance formula, scale because otherwise the plane will never take off
-        velocity = 40000;// 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
+        velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
         velocity *= (1 + 0.1 * velocityUpscale); //Throwing Power Upgrade
-        theta = Math.PI / 4; // Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
+        theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
         vx = velocity * Math.cos(theta); // get x and y components of velocity
         vy = -1 * velocity * Math.sin(theta);
         ctx.fillStyle = "green";
@@ -97,4 +100,4 @@ var keyPressed = (e) => {
 c.addEventListener('mousedown', grab_airplane);
 c.addEventListener('mousemove', hold_airplane);
 c.addEventListener('mouseup', throw_airplane);
-document.addEventListener('keydown', keyPressed);
+document.addEventListener('keypress', keyPressed);

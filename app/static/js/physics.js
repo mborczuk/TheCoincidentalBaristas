@@ -26,7 +26,7 @@ function update_plane() {
     vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
     velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
     theta = Math.atan(vy / vx) * -1; // recalculate theta
-    console.log(theta);
+    // console.log(theta);
     //F_drag = 0.5pCAv^2
     //0.32 is coefficient, .025 is estimated area of paper airplane
     //opposite direction of motion
