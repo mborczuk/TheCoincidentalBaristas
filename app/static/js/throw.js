@@ -1,6 +1,7 @@
 let date = new Date();
 let mouseDown = false;
 let starttime;
+let rudder = false;
 
 var grab_airplane = (e) => {
     if(!thrown) {
@@ -61,43 +62,44 @@ var throw_airplane = (e) => {
 
 // FIX THIS 
 var keyPressed = (e) => {
-    if(thrown) {
-      // first half of projectile motion
-      if(theta > 0) {
-        if(e.key == 'a') {
-          if(theta < 1.5) { // plane can be changed within the range of 0.5 to 1.5 rad, can maybe be changed w upgrades 
-            theta = Math.min(1.5, theta + 5 * (Math.PI / 180));
-            vx = velocity * Math.cos(theta); // get x and y components of velocity
-            vy = -1 * velocity * Math.sin(theta);
+    if(rudder) {
+      if(thrown) {
+          // first half of projectile motion
+          if(theta > 0) {
+            if(e.key == 'a') {
+              if(theta < 1.5) { // plane can be changed within the range of 0.5 to 1.5 rad, can maybe be changed w upgrades 
+                theta = Math.min(1.5, theta + 5 * (Math.PI / 180));
+                vx = velocity * Math.cos(theta); // get x and y components of velocity
+                vy = -1 * velocity * Math.sin(theta);
+              }
+            }
+            if(e.key == 'd') {
+              theta = Math.max(0.5, theta - 5 * (Math.PI / 180)); // 1 bc otherwise we get weird issues with 0 (and then the plane just flies horizontally forever)
+              // can be upgraded with rudder upgrades
+              vx = velocity * Math.cos(theta); // get x and y components of velocity
+              vy = -1 * velocity * Math.sin(theta);
+            }
           }
-        }
-        if(e.key == 'd') {
-          theta = Math.max(0.5, theta - 5 * (Math.PI / 180)); // 1 bc otherwise we get weird issues with 0 (and then the plane just flies horizontally forever)
-          // can be upgraded with rudder upgrades
-          vx = velocity * Math.cos(theta); // get x and y components of velocity
-          vy = -1 * velocity * Math.sin(theta);
-        }
-      }
-      // second half of projectile motion
-      if(theta < 0) {
-        if(e.key == 'a') {
-          theta = Math.min(-0.5, theta + 5 * (Math.PI / 180));
-          vx = velocity * Math.cos(theta); // get x and y components of velocity
-          vy = -1 * velocity * Math.sin(theta);
-        }
-        if(e.key == 'd') {
-          if(theta > -1.5) {
-            theta = Math.max(-1.5, theta - 5 * (Math.PI / 180));
-            vx = velocity * Math.cos(theta); // get x and y components of velocity
-            vy = -1 * velocity * Math.sin(theta);
+          // second half of projectile motion
+          if(theta < 0) {
+            if(e.key == 'a') {
+              theta = Math.min(-0.5, theta + 5 * (Math.PI / 180));
+              vx = velocity * Math.cos(theta); // get x and y components of velocity
+              vy = -1 * velocity * Math.sin(theta);
+            }
+            if(e.key == 'd') {
+              if(theta > -1.5) {
+                theta = Math.max(-1.5, theta - 5 * (Math.PI / 180));
+                vx = velocity * Math.cos(theta); // get x and y components of velocity
+                vy = -1 * velocity * Math.sin(theta);
+              }
+            }
           }
-        }
       }
-      
     }
   }
 
 c.addEventListener('mousedown', grab_airplane);
 c.addEventListener('mousemove', hold_airplane);
 c.addEventListener('mouseup', throw_airplane);
-document.addEventListener('keypress', keyPressed);
+document.addEventListener('keydown', keyPressed);

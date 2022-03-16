@@ -16,8 +16,12 @@ var upgrade = (upgradeID, level) => {
       case 4: // lightweight upgrade
         mass = 5 - 0.1 * level;
         break;
-      case 5:
-        console.log("bye");
+      case 5: // rudder upgrade
+        if(level == 1) {
+          rudder == true;
+        } else {
+          
+        }
         break;
       default:
         console.log("aksjdhajsd");

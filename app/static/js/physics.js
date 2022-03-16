@@ -6,6 +6,8 @@ var vy = velocity * Math.sin(theta);
 var dx = 0;
 var dy = 0;
 var ay = 9.8 * 3780;
+var kineticFrictionCoefficient = 0.7;
+var ax = -ay * kineticFrictionCoefficient;
 
 var velocityUpscale = 0;
 
@@ -23,22 +25,31 @@ function update_plane() {
     // Time in between frames
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
     starttime = date.getTime();
-    vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
-    velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
-    theta = Math.atan(vy / vx) * -1; // recalculate theta
-    // console.log(theta);
-    //F_drag = 0.5pCAv^2
-    //0.32 is coefficient, .025 is estimated area of paper airplane
-    //opposite direction of motion
-    var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
-    dragForce *= (1 - 0.1 * dragUpgrade);
-    // 5 kg avg paper mass, F/m = a
-    dFvx = dragForce / mass * time * Math.cos(theta);
-    dFvy = dragForce / mass * time * Math.sin(theta);
-    // console.log("dragForce:" + dFvx + ", " + dFvy);
-    // console.log("velocity:" + dx+ ", " + dy)
-    dx = (vx - dFvx) * time;
-    dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
+    console.log(planeY);
+    if(planeY <= 428) {
+      vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
+      velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
+      theta = Math.atan(vy / vx) * -1; // recalculate theta
+      // console.log(theta);
+      //F_drag = 0.5pCAv^2
+      //0.32 is coefficient, .025 is estimated area of paper airplane
+      //opposite direction of motion
+      var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
+      dragForce *= (1 - 0.1 * dragUpgrade);
+      // 5 kg avg paper mass, F/m = a
+      dFvx = dragForce / mass * time * Math.cos(theta);
+      dFvy = dragForce / mass * time * Math.sin(theta);
+      // console.log("dragForce:" + dFvx + ", " + dFvy);
+      // console.log("velocity:" + dx+ ", " + dy)
+      dx = (vx - dFvx) * time;
+      dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
+    } else {
+      theta = 0;
+      dy = 0;
+      vx = vx + ax * time;
+      dx = (vx) * time;
+    }
+
     // console.log("velocity:" + dx+ ", " + dy)
     // actual distance the plane SHOULD have gone
     realX += dx; // distance
@@ -51,9 +62,10 @@ function update_plane() {
     ctx.rotate(-theta); // rotate by theta
     ctx.translate(-(planeX + (planeWidth / 2)), -(planeY + (planeHeight / 2))); // move origin back to (0, 0)
 
-    // if(planeY >= 800) {
-    //     console.log("hori: " + (realX / 3780)); // actual horizontal distance
-    //     thrown = false;
-    // stopIt();
+    if(dx <= 0) {
+      console.log("hori: " + (realX / 3780)); // actual horizontal distance
+      thrown = false;
+      stopIt();
+    }
   };
   
