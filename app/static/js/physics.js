@@ -17,19 +17,14 @@ var dFvy = 0;
 var dragUpgrade = 0;
 var mass = 20;
 
-function update_velocity() {
-  date = new Date();
-
-  // Time in between frames
-  var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
-  starttime = date.getTime();
+function update_velocity(time) {
   vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
   velocity = Math.sqrt(
     (vx * vx) + (vy * vy)
   ); // recalculate velocity
 }
 
-function update_drag() {
+function update_drag(time) {
   // F_drag = 0.5pCAv^2
   // 0.32 is coefficient, .025 is estimated area of paper airplane
   // opposite direction of motion
@@ -45,7 +40,7 @@ function update_drag() {
   // console.log("velocity:" + dx+ ", " + dy)
 }
 
-function update_delta() {
+function update_delta(time) {
   dx = (vx - dFvx) * time;
   dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
   // console.log("velocity:" + dx+ ", " + dy)
@@ -53,24 +48,24 @@ function update_delta() {
 
 function update_plane() {
     // console.log(velocity);
-    update_velocity();
+    // update_velocity();
 
     // Time in between frames
+    var date = new Date();
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
     starttime = date.getTime();
     console.log(planeY);
     if(planeY <= 428) {
-      vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
-      velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
+      update_velocity(time);
       theta = Math.atan(vy / vx) * -1; // recalculate theta
       // console.log(theta);
       //F_drag = 0.5pCAv^2
       //0.32 is coefficient, .025 is estimated area of paper airplane
       //opposite direction of motion
-      update_drag();
+      update_drag(time);
       // console.log("dragForce:" + dFvx + ", " + dFvy);
       // console.log("velocity:" + dx+ ", " + dy)
-      update_delta();
+      update_delta(time);
     } else {
       theta = 0;
       dy = 0;
@@ -81,7 +76,8 @@ function update_plane() {
     // actual distance the plane SHOULD have gone
     realX += dx; // distance
     realY += dy; // altitude
-
+    // planeX += dx / 40;
+    // planeY += dy / 40;
     if(dx <= 0) {
       console.log("hori: " + (realX / 3780)); // actual horizontal distance
       thrown = false;
