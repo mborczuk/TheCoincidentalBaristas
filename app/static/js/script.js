@@ -9,6 +9,7 @@ var mouseY;
 
 var planeX = 10;
 var planeY = 428;
+var thrown = false;
 
 var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);

@@ -1,5 +1,6 @@
 // BACKGROUND SETUP ================================
 var level = 1;
+var ground_y = 0;
 bg_loaded = false;
 mg_loaded = false;
 fg_loaded = false;
@@ -34,8 +35,8 @@ fg.src = `../images/g${level}.png`;
 fg.addEventListener('load', function() {
   fg_loaded = true;
   fg_offset_y = c.clientHeight - (fg.height / 2);
+  ground_y =  c.clientHeight - (fg.height / 2);
 });
-
 
 function fill_image(img, initial_x, y, img_width, img_height) {
   for (let w = initial_x; w < c.clientWidth * 2; w += img_width) {
@@ -87,5 +88,18 @@ var planeWidth = 87;
 var planeHeight = 39;
 
 function draw_plane() {
+  // Rotate the plane
+  if (thrown) {
+    ctx.translate(planeX + (planeWidth / 2), planeY + (planeHeight / 2)); // move origin to center of plane
+    ctx.rotate(-theta); // rotate by theta
+    ctx.translate(-(planeX + (planeWidth / 2)), -(planeY + (planeHeight / 2))); // move origin back to (0, 0)
+  }
+
+  // Draw the plane
   ctx.drawImage(plane, planeX, planeY, planeWidth, planeHeight);
+
+  // Revert transformations
+  if (thrown) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
+  }
 }

@@ -9,7 +9,6 @@ function clear() {
 };
 
 var lastID = 0;
-var thrown = false;
 
 // stars (flight stats)
 var stars = 0; // add to as collected
@@ -28,8 +27,7 @@ var gameLoop = () => {
   }
 
   draw_plane();
-  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
-  
+
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
 }
