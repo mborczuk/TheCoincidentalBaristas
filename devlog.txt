@@ -89,3 +89,6 @@ Fix page not loading: Images are only drawn after they have been loaded.
 
 danielS -- 2022-03-15 20:33
 Fix throwing. Fix rotation.
+
+danielS -- 2022-03-15 21:28
+Fix rotation (again). Update theta each frame.

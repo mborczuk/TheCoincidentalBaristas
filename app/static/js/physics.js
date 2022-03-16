@@ -23,15 +23,13 @@ function update_plane() {
     // Time in between frames
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
     starttime = date.getTime();
-
-    // Recalculate velocity
-    vy = vy + ay * time; 
+    vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
     velocity = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2)); // recalculate velocity
-    // console.log(ay);
-  
-    // F_drag = 0.5pCAv^2
+    theta = Math.atan(vy / vx) * -1; // recalculate theta
+    console.log(theta);
+    //F_drag = 0.5pCAv^2
     //0.32 is coefficient, .025 is estimated area of paper airplane
-    // Opposite direction of motion
+    //opposite direction of motion
     var dragForce = 1/2 * 1.2754 * 0.16 * .025 * velocity * velocity;
     dragForce *= (1 - 0.1 * dragUpgrade);
     // 5 kg avg paper mass, F/m = a
@@ -39,7 +37,6 @@ function update_plane() {
     dFvy = dragForce / mass * time * Math.sin(theta);
     // console.log("dragForce:" + dFvx + ", " + dFvy);
     // console.log("velocity:" + dx+ ", " + dy)
-
     dx = (vx - dFvx) * time;
     dy = (vy - dFvy) * time + 0.5 * -9.8 * time * time;
     // console.log("velocity:" + dx+ ", " + dy)
