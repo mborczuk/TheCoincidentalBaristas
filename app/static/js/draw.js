@@ -40,13 +40,13 @@ fg.addEventListener('load', function() {
 
 function fill_image(img, initial_x, y, img_width, img_height) {
   for (let w = initial_x; w < c.clientWidth * 2; w += img_width) {
-    ctx.drawImage(img, 
-      initial_x + w, y, 
+    ctx.drawImage(img,
+      initial_x + w, y,
       img_width, img_height
     );
   }
 }
-  
+
 function draw_bg() {
   if (bg_loaded) {
     fill_image(bg, bg_offset_x, bg_offset_y, c.clientWidth, c.clientHeight);
@@ -81,7 +81,7 @@ function update_env_offset() {
 
 // AIPLANE SETUP ======================
 
-var plane = new Image(); 
+var plane = new Image();
 plane.src = "../images/plane_1.png";
 
 var planeWidth = 87;
@@ -101,5 +101,64 @@ function draw_plane() {
   // Revert transformations
   if (thrown) {
     ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
+  }
+}
+
+// STAR SETUP ======================
+
+var star = new Image();
+star.src = "../images/star.png";
+
+// go thru array of starPositions
+// for each: see if on canvas, draw image, then update x
+// go thru again to delete those not on canvas
+function draw_existing_stars() {
+  for (let i = 0; i < starPositions.length; i++) {
+    // console.log("i: " + i);
+    var starX = starPositions[i][0];
+    // console.log(starX);
+    var starY = starPositions[i][1];
+    if (starX > 0) { // if on canvas
+      ctx.drawImage(star, starX, starY, 25, 25); //25 by 25 star
+      // console.log("star Position: " + starX + ", " + starY);
+      var date = new Date();
+      var time = ((date.getTime() - starttime)) / 1000;
+      // console.log("vx: " + vx + ", time: " + time);
+      starPositions[i][0] -= vx * time;
+      // console.log("new star Position: " + starX);
+    }
+    // console.log("star Position: " + starX + ", " + starY);
+  }
+  // for (let i = starPositions.length - 1; i === 0; i++) {
+  //   if (starPositions[i][0] >= 0) {
+  //     starPositions.pop();
+  //   }
+  // }
+}
+
+function spawn_stars() {
+  // console.log("starPositions length: " + starPositions.length);
+  for (let i = 0; i < 10; i++) {
+    if (Math.random() < 0.02) { //change possibility of spawning new star
+      var starX = Math.floor(Math.random() * 25) + 950;
+      var starY = Math.floor(Math.random() * 250) + 50;
+      starPositions[starPositions.length] = new Array(2);
+      starPositions[starPositions.length - 1][0] = starX;
+      starPositions[starPositions.length - 1][1] = starY;
+    }
+  }
+}
+
+// must fix
+function check_stars() { // check position of star vs plane
+  for (let i = 0; i < starPositions.length; i++) {
+    var starX = starPositions[i][0];
+    var starY = starPositions[i][1];
+    if ((starX >= (planeX - 25)) && (starX <= (planeX + 112)) &&
+        (starY >= (planeY - 25)) && (starY <= (planeY + 64)))
+    {
+      stars++;
+      i--;
+    }
   }
 }

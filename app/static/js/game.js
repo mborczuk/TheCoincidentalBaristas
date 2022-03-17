@@ -2,7 +2,7 @@
 var c = document.getElementById("game_canvas"); // Get canvas
 var ctx = c.getContext("2d"); // Get canvas context
 
-var requestID; 
+var requestID;
 
 function clear() {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
@@ -10,23 +10,23 @@ function clear() {
 
 var lastID = 0;
 
-// stars (flight stats)
-var stars = 0; // add to as collected
-var starWorth = 5; // increase with upgrade
-
-// cranes
-var craneTime = 3; // starting crane multiplier lasts 3s?
-
 var gameLoop = () => {
   clear();
   draw_bg();
-  
+
   if (thrown) {
     update_env_offset();
     update_plane();
   }
 
   draw_plane();
+
+  if (thrown) {
+    draw_existing_stars();
+    spawn_stars();
+    // check_stars();
+  }
+
   display_altitude();
 
   window.cancelAnimationFrame(requestID);
@@ -34,6 +34,7 @@ var gameLoop = () => {
 }
 
 var stopIt = () => {
+  console.log("Stars: " + stars);
   console.log("stopIt invoked...")
   console.log( requestID );
   window.cancelAnimationFrame(requestID);

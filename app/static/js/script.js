@@ -2,7 +2,7 @@
 var c = document.getElementById("game_canvas"); // Get canvas
 var ctx = c.getContext("2d"); // Get canvas context
 
-var requestID; 
+var requestID;
 
 var mouseX;
 var mouseY;
@@ -13,6 +13,14 @@ var distance = 0;
 var planeX = 10;
 var planeY = 428;
 var thrown = false;
+
+// stars (flight stats)
+var stars = 0; // add to as collected
+var starWorth = 5; // increase with upgrade
+const starPositions = [];
+
+// cranes
+var craneTime = 3; // starting crane multiplier lasts 3s?
 
 var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
@@ -27,10 +35,9 @@ var stopIt = () => {
 function wrap(n, min, max) {
   if (n < min) {
     return max - Math.abs(min - n);
-  } 
+  }
   else if (n > max) {
     return min + Math.abs(n - max);
-  } 
+  }
   return n;
 }
-
