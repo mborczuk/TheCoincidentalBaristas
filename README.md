@@ -21,7 +21,7 @@ $ git clone git@github.com:mborczuk/TheCoincidentalBaristas.git
 
 1. Create a virtual environment
   ```shell
-  $ python3 -m venv \<path_to_virtual_environment\>
+  $ python3 -m venv <path_to_virtual_environment>
   ```
 
 2. Activate the virtual environment
