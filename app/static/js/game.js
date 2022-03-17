@@ -17,15 +17,12 @@ var gameLoop = () => {
   if (thrown) {
     update_env_offset();
     update_plane();
+    draw_existing_stars();
+    spawn_stars();
+    check_stars();
   }
 
   draw_plane();
-
-  if (thrown) {
-    //draw_existing_stars();
-    //spawn_stars();
-    //check_stars();
-  }
 
   display_altitude();
 

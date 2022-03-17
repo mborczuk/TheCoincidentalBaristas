@@ -104,10 +104,10 @@ function draw_plane() {
     }
     if(planeX > 200) {
       planeX = 200;
-    } 
+    }
     if(planeY < 200) {
       planeY = 200;
-    } 
+    }
     if (planeY > 428) {
       planeY = 428;
     }
@@ -167,15 +167,21 @@ function spawn_stars() {
   }
 }
 
-// must fix
 function check_stars() { // check position of star vs plane
   for (let i = 0; i < starPositions.length; i++) {
+    // console.log("i: " + i);
+    // console.log("starlen")
     var starX = starPositions[i][0];
     var starY = starPositions[i][1];
-    if ((starX >= (planeX - 25)) && (starX <= (planeX + 112)) &&
-        (starY >= (planeY - 25)) && (starY <= (planeY + 64)))
+    var planeXMin = planeX - 25;
+    var planeXMax = planeX + 112;
+    var planeYMin = planeY - 25;
+    var planeYMax = planeY + 64
+    if ((starX >= planeXMin) && (starX <= planeXMax) &&
+        (starY >= planeYMin) && (starY <= planeYMax))
     {
       stars++;
+      starPositions.splice(i, 1);
       i--;
     }
   }
