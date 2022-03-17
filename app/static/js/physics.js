@@ -6,7 +6,7 @@ var vy = velocity * Math.sin(theta);
 var dx = 0;
 var dy = 0;
 var ay = 9.8 * 3780;
-var kineticFrictionCoefficient = 0.7;
+var kineticFrictionCoefficient = 1.0;
 var ax = -ay * kineticFrictionCoefficient;
 
 var velocityUpscale = 0;
@@ -67,10 +67,9 @@ function update_plane() {
       theta = Math.atan(vy / vx) * -1; // recalculate theta
       update_drag(time);
       update_delta(time);
-
     } else {
-      planeY = ground_y - planeHeight;
-      theta = 0;
+      planeY = 428;//ground_y - planeHeight;
+      theta = -Math.abs(theta);
       dy = 0;
       vx = vx + ax * time;
       dx = (vx) * time;
@@ -78,10 +77,15 @@ function update_plane() {
 
     // actual distance the plane SHOULD have gone
     distance += dx; 
-    altitude -= dy / 40;
-
-    // planeX += dx / 40;
-    planeY += dy / 40;
+    altitude -= dy;
+    if(altitude < 0) {
+      altitude = 0;
+    }
+    console.log(fg_offset_y);
+    if(fg_offset_y <= 400 && planeY > 50) {
+      planeX += dx / 40;
+      planeY += dy / 40;
+    }
     land_plane();
   };
   

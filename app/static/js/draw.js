@@ -71,7 +71,10 @@ function env_offset_x() {
 }
 
 function env_offset_y() {
-  return 0
+  bg_offset_y -= dy * 0.001;
+  // bg_offset_y = wrap(bg_offset_y, -c.clientHeight, c.clientHeight); // FIX THIS LOL
+  mg_offset_y -= dy * 0.005;
+  fg_offset_y -= dy * 0.01;
 }
 
 function update_env_offset() {
@@ -93,10 +96,25 @@ function draw_plane() {
     ctx.translate(planeX + (planeWidth / 2), planeY + (planeHeight / 2)); // move origin to center of plane
     ctx.rotate(-theta); // rotate by theta
     ctx.translate(-(planeX + (planeWidth / 2)), -(planeY + (planeHeight / 2))); // move origin back to (0, 0)
+    ctx.drawImage(plane, planeX, planeY, planeWidth, planeHeight);
   }
-
+  if(!thrown) {
+    if(planeX < 0) {
+      planeX = 0;
+    }
+    if(planeX > 200) {
+      planeX = 200;
+    } 
+    if(planeY < 200) {
+      planeY = 200;
+    } 
+    if (planeY > 428) {
+      planeY = 428;
+    }
+    ctx.drawImage(plane, planeX, planeY, planeWidth, planeHeight);
+  }
   // Draw the plane
-  ctx.drawImage(plane, planeX, planeY, planeWidth, planeHeight);
+
 
   // Revert transformations
   if (thrown) {

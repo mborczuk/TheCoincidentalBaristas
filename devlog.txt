@@ -108,3 +108,6 @@ Add hud.js demo. Add altitude measurement & landing based off altitude.
 shyneC -- 2022-03-16 20:41
 Add starPositions array, star spawn + move.
 Star counting is WIP - 0 stars :(
+
+michaelB -- 2022-03-17 09:01
+Add plane movement/background movement in the y-direction.
