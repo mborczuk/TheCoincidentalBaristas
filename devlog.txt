@@ -120,3 +120,6 @@ Add plane repositioning during flight. Remedy planeY desync on landing.
 
 danielS -- 2022-03-18 01:11
 Fix midground & foreground jittery looping.
+
+michaelB -- 2022-03-18 08:23
+Add fall to plane if it isn't thrown. Fix altitude reporter.

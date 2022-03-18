@@ -2,6 +2,7 @@ let date = new Date();
 let mouseDown = false;
 let starttime;
 let rudder = false;
+let fall = false;
 
 var grab_airplane = (e) => {
     if(!thrown) {
@@ -51,6 +52,8 @@ var throw_airplane = (e) => {
         altitude = -1 * (planeY - ground_y + planeHeight);
         date = new Date();
         starttime = date.getTime();
+      } else {
+        fall = true;
       }
     }
   }
