@@ -100,7 +100,6 @@ function update_plane() {
       planeY = ground_y - planeHeight;
     }
 
-    
     land_plane();
   };
   

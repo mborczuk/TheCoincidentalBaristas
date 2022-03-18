@@ -70,9 +70,9 @@ function env_offset_x() {
   bg_offset_x -= dx * 0.001;
   bg_offset_x = wrap(bg_offset_x, -1 * c.clientWidth, 0);
   mg_offset_x -= dx * 0.005;
-  mg_offset_x = wrap(mg_offset_x, -1 * c.clientWidth, 0);
+  mg_offset_x = wrap(mg_offset_x, -1 * (mg.width / 2), 0);
   fg_offset_x -= dx * 0.01;
-  fg_offset_x = wrap(fg_offset_x, -1 * c.clientWidth, 0);
+  fg_offset_x = wrap(fg_offset_x, -1 * (fg.width), 0);
 }
 
 function env_offset_y() {

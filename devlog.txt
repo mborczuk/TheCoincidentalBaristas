@@ -117,3 +117,6 @@ Fixed star counting.
 
 danielS -- 2022-03-18 01:01
 Add plane repositioning during flight. Remedy planeY desync on landing.
+
+danielS -- 2022-03-18 01:11
+Fix midground & foreground jittery looping.
