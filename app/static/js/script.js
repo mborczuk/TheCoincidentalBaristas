@@ -17,7 +17,7 @@ var thrown = false;
 // stars (flight stats)
 var stars = 0; // add to as collected
 var starWorth = 5; // increase with upgrade
-const starPositions = [];
+var starPositions = [];
 
 // cranes
 var craneTime = 3; // starting crane multiplier lasts 3s?
@@ -49,4 +49,8 @@ function wrap(n, min, max) {
     return min + Math.abs(n - max);
   }
   return n;
+}
+
+function inRect(px, py, x0, y0, x1, y1) {
+  return (px >= x0) && (px <= x1) && (py >= y0) && (py <= y1);
 }

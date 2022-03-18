@@ -54,6 +54,15 @@ function land_plane() {
   }
 }
 
+function free_fall() {
+  planeY += 2 + speed * 0.1;
+  speed++;
+  if(planeY >= 428) {
+    speed = 0;
+    fall = false;
+  }
+}
+
 function update_plane() {
     // console.log(velocity);
     // update_velocity();

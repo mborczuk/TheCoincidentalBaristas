@@ -15,19 +15,14 @@ var gameLoop = () => {
   clear();
   draw_bg();
   if(fall) {
-    planeY += 2 + speed * 0.1;
-    speed++;
-    if(planeY >= 428) {
-      speed = 0;
-      fall = false;
-    }
+    free_fall();
   }
   if (thrown) {
     update_env_offset();
     update_plane();
-    draw_existing_stars();
+    update_stars();
+    draw_stars();
     spawn_stars();
-    check_stars();
   }
 
   draw_plane();

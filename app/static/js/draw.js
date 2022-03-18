@@ -4,6 +4,9 @@ var ground_y = 0;
 bg_loaded = false;
 mg_loaded = false;
 fg_loaded = false;
+star_loaded = false;
+
+let min_star_offset = 500;
 
 // Ground horizontal offsets
 let bg_offset_y = 0;
@@ -117,42 +120,69 @@ function draw_plane() {
 
 // STAR SETUP ======================
 
-var star = new Image();
+let star = new Image();
+let starWidth = 30;
+let starHeight = 30;
 star.src = "../images/star.png";
-
+star.addEventListener('load', function() {
+  star_loaded = true;
+});
 // go thru array of starPositions
 // for each: see if on canvas, draw image, then update x
 // go thru again to delete those not on canvas
-function draw_existing_stars() {
-  for (let i = 0; i < starPositions.length; i++) {
-    // console.log("i: " + i);
-    var starX = starPositions[i][0];
-    // console.log(starX);
-    var starY = starPositions[i][1];
-    if (starX > 0) { // if on canvas
-      ctx.drawImage(star, starX, starY, 40, 40); //25 by 25 star
-      // console.log("star Position: " + starX + ", " + starY);
-      var date = new Date();
-      var time = ((date.getTime() - starttime)) / 1000;
-      // console.log("vx: " + vx + ", time: " + time);
-      starPositions[i][0] -= dx * 0.01;
-      // console.log("new star Position: " + starX);
+function draw_stars() {
+  if (star_loaded) {
+    for (let i = 0; i < starPositions.length; i++) {
+      // console.log("i: " + i);
+      var starX = starPositions[i][0];
+      // console.log(starX);
+      var starY = starPositions[i][1];
+      ctx.drawImage(star, starX, starY, starWidth, starHeight); //25 by 25 star
     }
-    // console.log("star Position: " + starX + ", " + starY);
   }
-  // for (let i = starPositions.length - 1; i === 0; i++) {
-  //   if (starPositions[i][0] >= 0) {
-  //     starPositions.pop();
-  //   }
-  // }
+}
+
+function collect_star(sx, sy) {
+  if (inRect( sx, sy,
+        planeX - starWidth, planeY - starHeight, 
+        planeX + planeWidth + starWidth, planeY + planeHeight + starHeight)
+      ) {
+    return true;
+  }
+  return false;
+}
+
+function update_stars() {
+  let star_no = 0;
+  while (star_no < starPositions.length) {
+    // Update coordinates
+    starPositions[star_no][0] -= dx * 0.01;
+    if (altitude > 200) {
+      starPositions[star_no][1] -= dy * 0.005;
+    }
+    
+    if (collect_star(starPositions[star_no][0], starPositions[star_no][1])) {
+      stars++;
+      // Remove star from list
+      starPositions.splice(star_no, 1);
+      star_no--;
+    }
+    else if (star_no[0] < 0 - star.width) {
+      // Remove star if goes left off-screen
+      starPositions.splice(star_no, 1);
+      star_no--;
+    }
+
+    star_no++;
+  }
 }
 
 function spawn_stars() {
   // console.log("starPositions length: " + starPositions.length);
   for (let i = 0; i < 10; i++) {
     if (Math.random() < 0.008) { //change possibility of spawning new star
-      var starX = Math.floor(Math.random() * 25) + 950;
-      var starY = Math.floor(Math.random() * 250) + 50;
+      var starX = Math.floor(Math.random() * 25) + c.clientWidth + starWidth;
+      var starY = Math.floor(Math.random() * c.clientHeight) + starHeight - min_star_offset;
       starPositions[starPositions.length] = new Array(2);
       starPositions[starPositions.length - 1][0] = starX;
       starPositions[starPositions.length - 1][1] = starY;
@@ -160,22 +190,3 @@ function spawn_stars() {
   }
 }
 
-function check_stars() { // check position of star vs plane
-  for (let i = 0; i < starPositions.length; i++) {
-    // console.log("i: " + i);
-    // console.log("starlen")
-    var starX = starPositions[i][0];
-    var starY = starPositions[i][1];
-    var planeXMin = planeX - 40;
-    var planeXMax = planeX + 127;
-    var planeYMin = planeY - 40;
-    var planeYMax = planeY + 79;
-    if ((starX >= planeXMin) && (starX <= planeXMax) &&
-        (starY >= planeYMin) && (starY <= planeYMax))
-    {
-      stars++;
-      starPositions.splice(i, 1);
-      i--;
-    }
-  }
-}
