@@ -48,6 +48,11 @@ function fill_image(img, initial_x, y, img_width, img_height) {
 }
 
 function draw_bg() {
+  // Fill Solid Background Color
+  ctx.fillStyle = 'rgb(71, 243, 255)'; 
+  ctx.fillRect(0,0,c.clientWidth, c.clientHeight);
+
+  // Draw Background Assets
   if (bg_loaded) {
     fill_image(bg, bg_offset_x, bg_offset_y, c.clientWidth, c.clientHeight);
   }
@@ -71,10 +76,9 @@ function env_offset_x() {
 }
 
 function env_offset_y() {
-  bg_offset_y -= dy * 0.001;
-  // bg_offset_y = wrap(bg_offset_y, -c.clientHeight, c.clientHeight); // FIX THIS LOL
-  mg_offset_y -= dy * 0.005;
-  fg_offset_y -= dy * 0.01;
+  bg_offset_y = Math.max(bg_offset_y - (dy * 0.001), 0);
+  mg_offset_y = Math.max(mg_offset_y - (dy * 0.005), c.clientHeight - (mg.height / 3));
+  fg_offset_y = Math.max(fg_offset_y - (dy * 0.04), c.clientHeight - (fg.height / 2));
 }
 
 function update_env_offset() {
@@ -97,28 +101,17 @@ function draw_plane() {
     ctx.rotate(-theta); // rotate by theta
     ctx.translate(-(planeX + (planeWidth / 2)), -(planeY + (planeHeight / 2))); // move origin back to (0, 0)
     ctx.drawImage(plane, planeX, planeY, planeWidth, planeHeight);
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
   }
   if(!thrown) {
     if(planeX < 0) {
       planeX = 0;
     }
-    if(planeX > 200) {
-      planeX = 200;
-    }
-    if(planeY < 200) {
-      planeY = 200;
-    }
-    if (planeY > 428) {
+    if (planeY > ground_y) {
       planeY = 428;
     }
+    // Draw the plane
     ctx.drawImage(plane, planeX, planeY, planeWidth, planeHeight);
-  }
-  // Draw the plane
-
-
-  // Revert transformations
-  if (thrown) {
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset all transformations
   }
 }
 

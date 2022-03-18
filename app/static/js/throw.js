@@ -25,7 +25,7 @@ var hold_airplane = (e) => {
     if (mouseDown) {
         planeX = e.offsetX - planeWidth / 2;
         planeY = e.offsetY - planeHeight / 2;
-        altitude = -1 * (e.offsetY - ground_y + planeHeight / 2);
+        altitude = -1 * (planeY - ground_y + planeHeight); 
     }
 }
 
@@ -48,7 +48,7 @@ var throw_airplane = (e) => {
         
         thrown = true; // the plane has been thrown
         
-        altitude = -1 * (e.offsetY - ground_y + planeHeight / 2);
+        altitude = -1 * (planeY - ground_y + planeHeight);
         date = new Date();
         starttime = date.getTime();
       }

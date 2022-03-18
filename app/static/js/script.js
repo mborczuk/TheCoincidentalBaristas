@@ -32,6 +32,15 @@ var stopIt = () => {
   window.cancelAnimationFrame(requestID);
 };
 
+function clamp(n, min, max) {
+  if (n < min) {
+    return min
+  } else if (n > max) {
+    return max
+  }
+  return n
+}
+
 function wrap(n, min, max) {
   if (n < min) {
     return max - Math.abs(min - n);

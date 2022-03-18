@@ -68,24 +68,39 @@ function update_plane() {
       update_drag(time);
       update_delta(time);
     } else {
-      planeY = 428;//ground_y - planeHeight;
+      console.log(altitude);
       theta = -Math.abs(theta);
       dy = 0;
       vx = vx + ax * time;
       dx = (vx) * time;
     }
-
     // actual distance the plane SHOULD have gone
     distance += dx; 
-    altitude -= dy;
-    if(altitude < 0) {
+    altitude -= dy / 40;
+
+    if (altitude < 0) {
       altitude = 0;
     }
-    console.log(fg_offset_y);
-    if(fg_offset_y <= 400 && planeY > 50) {
-      planeX += dx / 40;
+
+    // Reposition plane to frame it better
+    if (planeX > c.clientWidth / 4) {
+      planeX -= 5;
+    }
+
+    if (planeY < c.clientHeight / 3) {
+      planeY += 1;
+    }
+    
+    if (altitude < 200) {
       planeY += dy / 40;
     }
+    
+    // PlaneY desync on landing fix
+    if (altitude == 0 || planeY >= ground_y) {
+      planeY = ground_y - planeHeight;
+    }
+
+    
     land_plane();
   };
   
