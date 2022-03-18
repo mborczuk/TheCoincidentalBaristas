@@ -49,7 +49,7 @@ function fill_image(img, initial_x, y, img_width, img_height) {
 
 function draw_bg() {
   // Fill Solid Background Color
-  ctx.fillStyle = 'rgb(71, 243, 255)'; 
+  ctx.fillStyle = 'rgb(71, 243, 255)';
   ctx.fillRect(0,0,c.clientWidth, c.clientHeight);
 
   // Draw Background Assets
@@ -130,12 +130,12 @@ function draw_existing_stars() {
     // console.log(starX);
     var starY = starPositions[i][1];
     if (starX > 0) { // if on canvas
-      ctx.drawImage(star, starX, starY, 25, 25); //25 by 25 star
+      ctx.drawImage(star, starX, starY, 40, 40); //25 by 25 star
       // console.log("star Position: " + starX + ", " + starY);
       var date = new Date();
       var time = ((date.getTime() - starttime)) / 1000;
       // console.log("vx: " + vx + ", time: " + time);
-      starPositions[i][0] -= vx * time;
+      starPositions[i][0] -= dx * 0.01;
       // console.log("new star Position: " + starX);
     }
     // console.log("star Position: " + starX + ", " + starY);
@@ -150,7 +150,7 @@ function draw_existing_stars() {
 function spawn_stars() {
   // console.log("starPositions length: " + starPositions.length);
   for (let i = 0; i < 10; i++) {
-    if (Math.random() < 0.02) { //change possibility of spawning new star
+    if (Math.random() < 0.008) { //change possibility of spawning new star
       var starX = Math.floor(Math.random() * 25) + 950;
       var starY = Math.floor(Math.random() * 250) + 50;
       starPositions[starPositions.length] = new Array(2);
@@ -166,10 +166,10 @@ function check_stars() { // check position of star vs plane
     // console.log("starlen")
     var starX = starPositions[i][0];
     var starY = starPositions[i][1];
-    var planeXMin = planeX - 25;
-    var planeXMax = planeX + 112;
-    var planeYMin = planeY - 25;
-    var planeYMax = planeY + 64
+    var planeXMin = planeX - 40;
+    var planeXMax = planeX + 127;
+    var planeYMin = planeY - 40;
+    var planeYMax = planeY + 79;
     if ((starX >= planeXMin) && (starX <= planeXMax) &&
         (starY >= planeYMin) && (starY <= planeYMax))
     {

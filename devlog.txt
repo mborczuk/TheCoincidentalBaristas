@@ -123,3 +123,6 @@ Fix midground & foreground jittery looping.
 
 michaelB -- 2022-03-18 08:23
 Add fall to plane if it isn't thrown. Fix altitude reporter.
+
+shyneC -- 2022-03-18 08:35
+Adjust star movement speed, size

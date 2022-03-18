@@ -43,6 +43,7 @@ var stopIt = () => {
   console.log("stopIt invoked...")
   console.log( requestID );
   window.cancelAnimationFrame(requestID);
+  stars = 0;
 };
 
 gameLoop();
