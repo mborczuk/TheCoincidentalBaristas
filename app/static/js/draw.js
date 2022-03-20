@@ -183,7 +183,7 @@ function update_stars() {
 function spawn_stars() {
   // console.log("starPositions length: " + starPositions.length);
   for (let i = 0; i < 10; i++) {
-    if (Math.random() < 0.008) { //change possibility of spawning new star
+    if (Math.random() < 0.015) { //change possibility of spawning new star
       var starX = Math.floor(Math.random() * 25) + c.clientWidth + starWidth;
       var starY = Math.floor(Math.random() * c.clientHeight) + starHeight - min_star_offset;
       starPositions[starPositions.length] = new Array(2);

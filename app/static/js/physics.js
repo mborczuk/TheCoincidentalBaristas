@@ -12,13 +12,18 @@ var totalDistance = 0;
 var velocityUpscale = 0;
 var maxFuel = 20;
 var fuel = maxFuel;
-
+var roundedDistance = 0; 
 // Drag
 var dFvx = 0;
 var dFvy = 0;
 var dragUpgrade = 0;
 var mass = 20;
 
+function calculateCash() { // calculate and add to cash 
+  let cashToAdd = Math.round(stars * 5 + roundedDistance * 0.7);
+  cash += cashToAdd;
+  return cashToAdd;
+}
 function update_velocity(time) {
   vy = vy + ay * time; // recalculate velocity each frame (another kinematics equation)
   velocity = Math.sqrt(
@@ -50,12 +55,12 @@ function update_delta(time) {
 
 function land_plane() {
   if (dx <= 0 && altitude <= 0) {
-    roundedDistance = Math.round(distance / 37.8) / 100;
     console.log("hori: " + roundedDistance); // actual horizontal distance
     totalDistance += roundedDistance;
     distance = 0;
     thrown = false;
     velocity = 0;
+    theta = 0;
     fuel = maxFuel;
     stopIt();
   }
@@ -94,6 +99,7 @@ function update_plane() {
     // actual distance the plane SHOULD have gone
     distance += dx / 5; 
     altitude -= dy / 40;
+    roundedDistance = Math.round(distance / 37.8) / 100;
 
     if (altitude < 0) {
       altitude = 0;

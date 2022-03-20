@@ -29,6 +29,7 @@ var gameLoop = () => {
   display_altitude();
   display_velocity();
   display_fuel();
+  display_distance();
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
 }

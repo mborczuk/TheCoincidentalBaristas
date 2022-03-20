@@ -62,8 +62,7 @@ var throw_airplane = (e) => {
       }
     }
   }
-
-// FIX THIS 
+  
 var keyPressed = (e) => {
     // if(boost) {
     //   if(thrown && altitude > 0 && fuel > 0) {

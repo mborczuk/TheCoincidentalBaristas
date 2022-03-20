@@ -146,3 +146,6 @@ Fix toggle between login and register for landing
 
 michaelB -- 2022-03-20 15:53
 Overhaul upgrade system, removing need for level parameter. Add array of upgrade levels instead.
+
+michaelB -- 2022-03-20 16:45
+Add cash methods (calculate flight cash, buy upgrades with cash).
