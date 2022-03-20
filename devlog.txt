@@ -137,5 +137,9 @@ Remove stars when they go off screen to the left.
 aryamanG -- 2022-03-19 11:00
 Fix toggle between login and register for landing.
 
+michaelB -- 2022-03-20 15:16
+Add fuel mechanic (for rudder system). Fix small bug in rudder system. Finish all upgrades.
+
 danielS -- 2022-03-20 15:47
 Add post-flight results screen. 
+Fix toggle between login and register for landing

@@ -1,8 +1,9 @@
 var upgrade = (upgradeID, level) => {
     switch(upgradeID) {
       case 0: // weight upgrade
-        ay = ay - 10000;
-        console.log(ay);
+        if(ay > 0) {
+          ay = 9.8 * 3780 - (10000 * level);
+        }
         break;
       case 1: // speed upgrade
         dragUpgrade = level;
@@ -14,17 +15,27 @@ var upgrade = (upgradeID, level) => {
         velocityUpscale = level;
         break;
       case 4: // lightweight upgrade
-        mass = 5 - 0.1 * level;
+        mass = 20 - 0.1 * level;
         break;
       case 5: // rudder upgrade
-        if(level == 1) {
-          rudder == true;
-        } else {
-          
+        rudder = true;
+        if(level > 1) {
+          angle_modifier = 5 + level * 2;
         }
         break;
+      case 6: // friction reduction upgrade
+        kineticFrictionCoefficient = 1.1 - 0.1 * level;
+        break;
+      case 7: // fuel upgrade
+        fuelRate = 1 - level * 0.2; 
+        break;
+      case 8: // plane model upgrade
+        maxFuel += level * 5;
+        ay = 9.8 * 3780 - (1000 * level);
+        velocityScale = 15 + level;
+        break;
       default:
-        console.log("aksjdhajsd");
+        console.log("Not an upgrade!");
     }
   };
-  
+
