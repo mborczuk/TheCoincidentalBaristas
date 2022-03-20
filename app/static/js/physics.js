@@ -1,15 +1,17 @@
 // velocity + position, time, acceleration
-var velocity = 150;
+var velocity = 0;
 var theta = 1;
 var vx = velocity * Math.cos(theta);
 var vy = velocity * Math.sin(theta);
 var dx = 0;
 var dy = 0;
 var ay = 9.8 * 3780;
-var kineticFrictionCoefficient = 1.0;
+var kineticFrictionCoefficient = 1.1;
 var ax = -ay * kineticFrictionCoefficient;
-
+var totalDistance = 0;
 var velocityUpscale = 0;
+var maxFuel = 20;
+var fuel = maxFuel;
 
 // Drag
 var dFvx = 0;
@@ -47,9 +49,14 @@ function update_delta(time) {
 }
 
 function land_plane() {
-  if (dx <= 0) {
-    console.log("hori: " + (distance / 3780)); // actual horizontal distance
+  if (dx <= 0 && altitude <= 0) {
+    roundedDistance = Math.round(distance / 37.8) / 100;
+    console.log("hori: " + roundedDistance); // actual horizontal distance
+    totalDistance += roundedDistance;
+    distance = 0;
     thrown = false;
+    velocity = 0;
+    fuel = maxFuel;
     stopIt();
   }
 }
@@ -80,11 +87,12 @@ function update_plane() {
       console.log(altitude);
       theta = -Math.abs(theta);
       dy = 0;
+      velocity = vx;
       vx = vx + ax * time;
       dx = (vx) * time;
     }
     // actual distance the plane SHOULD have gone
-    distance += dx; 
+    distance += dx / 10; 
     altitude -= dy / 40;
 
     if (altitude < 0) {

@@ -130,9 +130,12 @@ Add fall to plane if it isn't thrown. Fix altitude reporter.
 shyneC -- 2022-03-18 08:35
 Adjust star movement speed, size
 
-danieS -- 2022-03-18 11:32
+danielS -- 2022-03-18 11:32
 Optimize star collection & positioning (only iterates through the starPosition list once).
 Remove stars when they go off screen to the left.
 
 aryamanG -- 2022-03-19 11:00
 Fix toggle between login and register for landing
+
+michaelB -- 2022-03-20 15:16
+Add fuel mechanic (for rudder system). Fix small bug in rudder system. Finish all upgrades.

@@ -6,7 +6,7 @@ mg_loaded = false;
 fg_loaded = false;
 star_loaded = false;
 
-let min_star_offset = 500;
+let min_star_offset = 250;
 
 // Ground horizontal offsets
 let bg_offset_y = 0;

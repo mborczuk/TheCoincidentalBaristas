@@ -2,7 +2,11 @@ let date = new Date();
 let mouseDown = false;
 let starttime;
 let rudder = false;
+// let boost = false;
 let fall = false;
+let angle_modifier = 5;
+let fuelRate = 1; 
+let velocityScale = 15;
 
 var grab_airplane = (e) => {
     if(!thrown) {
@@ -41,7 +45,8 @@ var throw_airplane = (e) => {
         // console.log(time);
         starttime = new_date.getTime();
         // set velocity using distance formula, scale because otherwise the plane will never take off
-        velocity = 10 * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
+        velocity = velocityScale * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
+        console.log(velocity);
         velocity *= (1 + 0.1 * velocityUpscale); //Throwing Power Upgrade
         theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
         vx = velocity * Math.cos(theta); // get x and y components of velocity
@@ -60,36 +65,53 @@ var throw_airplane = (e) => {
 
 // FIX THIS 
 var keyPressed = (e) => {
-    if(rudder) {
-      if(thrown) {
+    // if(boost) {
+    //   if(thrown && altitude > 0 && fuel > 0) {
+    //     if(e.key == 's') {
+    //       vx += 1000; // get x and y components of velocity
+    //       fuel -= fuelRate * 2;
+    //     }
+    //   }
+    // }
+    if(rudder) { //turning the plane
+      if(thrown && altitude > 0 && fuel > 0) {
+          console.log(theta);
           // first half of projectile motion
           if(theta > 0) {
             if(e.key == 'a') {
               if(theta < 1.5) { // plane can be changed within the range of 0.5 to 1.5 rad, can maybe be changed w upgrades 
-                theta = Math.min(1.5, theta + 5 * (Math.PI / 180));
+                theta = Math.min(1.5, theta + angle_modifier * (Math.PI / 180));
                 vx = velocity * Math.cos(theta); // get x and y components of velocity
                 vy = -1 * velocity * Math.sin(theta);
+                fuel -= fuelRate;
               }
             }
             if(e.key == 'd') {
-              theta = Math.max(0.5, theta - 5 * (Math.PI / 180)); // 1 bc otherwise we get weird issues with 0 (and then the plane just flies horizontally forever)
-              // can be upgraded with rudder upgrades
-              vx = velocity * Math.cos(theta); // get x and y components of velocity
-              vy = -1 * velocity * Math.sin(theta);
+              if(theta > 0.25) {
+                theta = Math.max(0.25, theta - angle_modifier * (Math.PI / 180)); // 0.5 bc otherwise we get weird issues with 0 (and then the plane just flies horizontally forever)
+                // can be upgraded with rudder upgrades
+                vx = velocity * Math.cos(theta); // get x and y components of velocity
+                vy = -1 * velocity * Math.sin(theta);
+                fuel -= fuelRate;
+              }
             }
           }
           // second half of projectile motion
           if(theta < 0) {
             if(e.key == 'a') {
-              theta = Math.min(-0.5, theta + 5 * (Math.PI / 180));
-              vx = velocity * Math.cos(theta); // get x and y components of velocity
-              vy = -1 * velocity * Math.sin(theta);
+              if(theta < -0.25) {
+                theta = Math.min(-0.25, theta + angle_modifier * (Math.PI / 180));
+                vx = velocity * Math.cos(theta); // get x and y components of velocity
+                vy = -1 * velocity * Math.sin(theta);
+                fuel -= fuelRate;
+              }
             }
             if(e.key == 'd') {
               if(theta > -1.5) {
-                theta = Math.max(-1.5, theta - 5 * (Math.PI / 180));
+                theta = Math.max(-1.5, theta - angle_modifier * (Math.PI / 180));
                 vx = velocity * Math.cos(theta); // get x and y components of velocity
                 vy = -1 * velocity * Math.sin(theta);
+                fuel -= fuelRate;
               }
             }
           }
