@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint, request, session, render_template, redirect, url_for, g
 import os, sqlite3, json, urllib
+import db_builder
 
 import auth, db_builder
 
@@ -18,7 +19,7 @@ app.register_blueprint(auth.bp)
 
 @app.route("/", methods=['GET', 'POST'])
 def landing():
-     return render_template('landing.html')
+    return render_template('landing.html', login=True)
 
 # for testing:
 @app.route("/game")

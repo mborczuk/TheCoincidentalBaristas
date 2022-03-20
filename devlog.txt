@@ -75,6 +75,9 @@ Add background motion.
 michaelB -- 2022-03-15 08:02
 Add rudder system (turning of the plane).
 
+aryamanG -- 2022-03-15 8:20
+Connected db functions to authentication
+
 michaelB -- 2022-03-15 12:13
 Plane now rotates properly in flight. Fix rudder system (known) bugs.
 
@@ -130,3 +133,6 @@ Adjust star movement speed, size
 danieS -- 2022-03-18 11:32
 Optimize star collection & positioning (only iterates through the starPosition list once).
 Remove stars when they go off screen to the left.
+
+aryamanG -- 2022-03-19 11:00
+Fix toggle between login and register for landing

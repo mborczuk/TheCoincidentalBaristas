@@ -26,15 +26,26 @@ def login():
         # Get information from request.form since it is submitted via post
         username = request.form['username']
         password = request.form['password']
-        error = db_builder.login(username, password)
+        logister = True
+        login = True
 
+        error = ""
+        if not username:
+            error = "Error: No username entered!"
+        elif not password:
+            error = "Error: No password entered!"
+        elif db_builder.login(username, password):
+            error = "Error: Account not found!"
+        else: 
+            error = ""
+       
         if error:
             # If incorrect, give feedback to the user
-            return render_template('login.html', error=error)
+            return render_template('landing.html', error_log=error, logister=logister, login=login)
         else:
             # Store user info into a cookie
             session['username'] = username
-            return redirect("/")
+            return redirect("/game")
 
     return render_template('login.html')
 
@@ -43,34 +54,33 @@ def login():
 def register():
 
     if request.method == "POST":
-        new_username = request.form["new_username"]
-        new_password = request.form["new_password"]
-        confirm_password = request.form["confirm_password"]
 
-        error_message = ""
+        new_username = request.form["username"]
+        new_password = request.form["password"]
+        logister = True
+        login = False
+
+        error = ""
         if not new_username:
-            error_message = "Error: No username entered!"
+            error = "Error: No username entered!"
         elif not new_password:
-            error_message = "Error: No password entered!"
-        elif confirm_password != new_password:
-            error_message = "Error: Passwords do not match!"
+            error = "Error: No password entered!"
+        elif db_builder.signup(new_username, new_password):
+            error = "Error: Username already exists"
+        else:
+            error = ""
 
-        if error_message:
-            return render_template("register.html", error_message=error_message)
-
-        error_message = db_builder.signup(new_username, new_password)
-
-        if error_message:
-            return render_template("register.html", error_message=error_message)
+        if error:
+            return render_template("landing.html", error_reg=error, logister=logister, login=login)
         else:
             session['username'] = new_username
-            return redirect("/")
+            return redirect("/game")
 
     if request.method == 'GET':
         if logged_in():
-            return redirect("/")
+            return redirect("/game")
         else:
-            return render_template('register.html')
+            return render_template('landing.html')
 
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():

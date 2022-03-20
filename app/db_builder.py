@@ -21,10 +21,10 @@ def signup(username, password):
   result = c.fetchone()
 
   if result:
-      return "Error: Username already exists"
+      return True
 
   else:
-      c.execute('INSERT INTO user VALUES (null, ?, ?, ?, ?)', (username, password, 0, 0))
+      c.execute('INSERT INTO users VALUES (null, ?, ?, ?, ?)', (username, password, 0, 0))
       
       db.commit()
       # Uses empty quotes since it will return false when checked as a boolean

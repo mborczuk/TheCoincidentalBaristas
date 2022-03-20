@@ -4,7 +4,7 @@
 var play_btn = document.getElementById('play-btn');
 var toggle_logister = document.getElementById('logister-toggle');
 var logister_open = false;
-var login_open = true;
+var login_open = null;
 
 var login_toggle = document.getElementById('login-toggle');
 var register_toggle = document.getElementById('register-toggle');
@@ -21,6 +21,18 @@ function toggle_btn(alt, focus) {
 }
 
 // OPEN LOGISTER PANEL
+
+function holder(){
+    return login;
+}
+
+function holder2(){
+    return logister;
+}
+
+logister_open = holder2();
+login_open = holder();
+console.log(login_open);
 
 function open_logister() {
     // Swap button styles
@@ -55,12 +67,20 @@ function close_logister() {
 
 function open_register() {
     // Swap button styles
-    toggle_btn(login_toggle, register_toggle)
+    login_open = false;
+    toggle_btn(login_toggle, register_toggle);
+    login_panel.style.display = 'none';
+    register_panel.style.display = 'grid';
+
 }
 
 function close_register() {
     // Swap button styles
+
+    login_open = true
     toggle_btn(register_toggle, login_toggle)
+    login_panel.style.display = 'grid';
+    register_panel.style.display = 'none';
 }
 
 toggle_logister.addEventListener('click', function() {
@@ -74,6 +94,18 @@ play_btn.addEventListener('click', function() {
         close_logister();
     }
 });
+
+register_toggle.addEventListener('click', function(){
+    if (login_open){
+        open_register();
+    }
+})
+
+login_toggle.addEventListener('click', function() {
+    if (!login_open){
+        close_register();
+    }
+})
 
 // Update Panels based on js variables
 
