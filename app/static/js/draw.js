@@ -170,6 +170,9 @@ function update_stars() {
     else if (star_no[0] < 0 - star.width) {
       // Remove star if goes left off-screen
       starPositions.splice(star_no, 1);
+      star_no--; 
+    } else if(star_no[1] > c.clientHeight - star.height) { // just in case it hits the ground ever, remove it
+      starPositions.splice(star_no, 1);
       star_no--;
     }
 

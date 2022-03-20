@@ -23,6 +23,7 @@ var starPositions = [];
 var craneTime = 3; // starting crane multiplier lasts 3s?
 
 var cash = 0;
+var upgradeLevels = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);

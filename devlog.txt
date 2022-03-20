@@ -139,3 +139,6 @@ Fix toggle between login and register for landing
 
 michaelB -- 2022-03-20 15:16
 Add fuel mechanic (for rudder system). Fix small bug in rudder system. Finish all upgrades.
+
+michaelB -- 2022-03-20 15:53
+Overhaul upgrade system, removing need for level parameter. Add array of upgrade levels instead.

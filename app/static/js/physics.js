@@ -92,7 +92,7 @@ function update_plane() {
       dx = (vx) * time;
     }
     // actual distance the plane SHOULD have gone
-    distance += dx / 10; 
+    distance += dx / 5; 
     altitude -= dy / 40;
 
     if (altitude < 0) {
