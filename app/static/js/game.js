@@ -26,7 +26,6 @@ var gameLoop = () => {
   }
 
   draw_plane();
-
   display_altitude();
   display_velocity();
   display_fuel();
@@ -35,6 +34,7 @@ var gameLoop = () => {
 }
 
 var stopIt = () => {
+  display_results();
   console.log("Stars: " + stars);
   console.log("stopIt invoked...")
   console.log( requestID );

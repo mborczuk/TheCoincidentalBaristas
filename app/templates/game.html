@@ -8,6 +8,27 @@
 {% block content %}
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
+    <div id="results-container">
+      <h2>Results</h2>
+      <div class="stat-container">
+        <span class="stat-name">Stars Collected</span>
+        <div class="stat-line"></div>
+        <div class="stat-result" id="star-result">0</div>
+      </div>
+      <div class="stat-container">
+        <span class="stat-name">Distance</span>
+        <div class="stat-line"></div>
+        <div class="stat-result" id="dist-result">0</div>
+      </div>
+      <div class="total-container">
+        <h4>Total: </h4>
+        <h4 class="thin" id="total-result">$0</h4>
+      </div>
+      <div class="replay-container">
+        <button id="replay" type="button" class="btn btn-fill">Continue</button>
+      </div>
+    </div>
+    <span id="altitude">0</span>
     <span id="altitude">0</span>
     <span id="velocity">0</span>
     <span id="fuel">0</span>
