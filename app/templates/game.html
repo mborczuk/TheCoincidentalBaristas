@@ -8,13 +8,34 @@
 {% block content %}
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
-    <span id="altitude">0</span>
+    <div id="results-container">
+      <h2>Results</h2>
+      <div class="stat-container">
+        <span class="stat-name">Stars Collected</span>
+        <div class="stat-line"></div>
+        <div class="stat-result" id="star-result">0</div>
+      </div>
+      <div class="stat-container">
+        <span class="stat-name">Distance</span>
+        <div class="stat-line"></div>
+        <div class="stat-result" id="dist-result">0</div>
+      </div>
+      <div class="total-container">
+        <h4>Total: </h4>
+        <h4 class="thin" id="total-result">$0</h4>
+      </div>
+      <div class="replay-container">
+        <button id="replay" type="button" class="btn btn-fill">Continue</button>
+      </div>
+    </div>
+    <!-- <span id="altitude">0</span> -->
   </div>
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="{{ url_for('static', filename='js/physics.js') }}"></script>
   <script src="{{ url_for('static', filename='js/draw.js') }}"></script>
   <script src="{{ url_for('static', filename='js/throw.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/upgrades.js') }}"></script>
   <script src="{{ url_for('static', filename='js/hud.js') }}"></script>
   <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 {% endblock %}

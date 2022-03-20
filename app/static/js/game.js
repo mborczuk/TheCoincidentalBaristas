@@ -26,7 +26,6 @@ var gameLoop = () => {
   }
 
   draw_plane();
-
   display_altitude();
 
   window.cancelAnimationFrame(requestID);
@@ -34,6 +33,7 @@ var gameLoop = () => {
 }
 
 var stopIt = () => {
+  display_results();
   console.log("Stars: " + stars);
   console.log("stopIt invoked...")
   console.log( requestID );
