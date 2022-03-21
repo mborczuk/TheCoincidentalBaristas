@@ -152,3 +152,6 @@ Add cash methods (calculate flight cash, buy upgrades with cash).
 
 shyneC -- 2022-03-20 22:30
 Add cranes, add to stars with cranes involved. Need to figure out subtracting from craneTime.
+
+michaelB -- 2022-03-21 08:15
+Fix problem with database creation.
