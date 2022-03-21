@@ -82,7 +82,7 @@ function update_plane() {
     var date = new Date();
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
     starttime = date.getTime();
-
+    console.log(time);
     if (altitude > 0) {
       update_velocity(time);
       theta = Math.atan(vy / vx) * -1; // recalculate theta

@@ -10,6 +10,7 @@ def create_app():
     app.config.from_mapping(
         SECRET_KEY = os.urandom(32),
     )
+    db_builder.dbsetup()
     return app
 
 app = create_app()
