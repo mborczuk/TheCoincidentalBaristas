@@ -27,9 +27,6 @@ var gameLoop = () => {
     draw_stars();
     spawn_stars();
 
-    // console.log("cranes: " + cranes);
-    // if (cranes > 0) cranes--;
-
     update_crane();
     draw_cranes();
     spawn_cranes();

@@ -12,15 +12,15 @@ var totalDistance = 0;
 var velocityUpscale = 0;
 var maxFuel = 20;
 var fuel = maxFuel;
-var roundedDistance = 0; 
+var roundedDistance = 0;
 // Drag
 var dFvx = 0;
 var dFvy = 0;
 var dragUpgrade = 0;
 var mass = 20;
 
-function calculateCash() { // calculate and add to cash 
-  let cashToAdd = Math.round(stars * 5 + roundedDistance * 0.7);
+function calculateCash() { // calculate and add to cash
+  let cashToAdd = Math.round(actualStars * 5 + roundedDistance * 0.7);
   cash += cashToAdd;
   return cashToAdd;
 }
@@ -97,7 +97,7 @@ function update_plane() {
       dx = (vx) * time;
     }
     // actual distance the plane SHOULD have gone
-    distance += dx / 5; 
+    distance += dx / 5;
     altitude -= dy / 40;
     roundedDistance = Math.round(distance / 37.8) / 100;
 
@@ -113,11 +113,11 @@ function update_plane() {
     if (planeY < c.clientHeight / 3) {
       planeY += 1;
     }
-    
+
     if (altitude < 200) {
       planeY += dy / 40;
     }
-    
+
     // PlaneY desync on landing fix
     if (altitude == 0 || planeY >= ground_y) {
       planeY = ground_y - planeHeight;
@@ -125,4 +125,3 @@ function update_plane() {
 
     land_plane();
   };
-  

@@ -36,7 +36,7 @@ var upgrade = (upgradeID) => {
             upgradeLevels[2] = 2;
             return;
           }
-          craneTime = 2 + craneTime;
+          craneTime = 125 + craneTime;
           cash -= cost;
           break;
         case 3: // throwing power upgrade
@@ -79,7 +79,7 @@ var upgrade = (upgradeID) => {
             upgradeLevels[7] = 3;
             return;
           }
-          fuelRate = fuelRate - 0.2; 
+          fuelRate = fuelRate - 0.2;
           cash -= cost;
           break;
         case 8: // plane model upgrade
@@ -98,4 +98,3 @@ var upgrade = (upgradeID) => {
       }
     }
   };
-

@@ -18,11 +18,12 @@ var thrown = false;
 var stars = 0; // add to as collected
 var starWorth = 5; // increase with upgrade
 var starPositions = [];
+var actualStars = 0; // with cranes introduced
 
 // cranes
 var cranePositions = [];
 var cranes = 0;
-var craneTime = 3; // starting crane multiplier lasts 3s?
+var craneTime = 187.5; // starting crane multiplier lasts 3s?
 
 var cash = 0;
 var upgradeLevels = [0, 0, 0, 0, 0, 0, 0, 0, 0];

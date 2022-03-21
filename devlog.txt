@@ -155,3 +155,6 @@ Add cranes, add to stars with cranes involved. Need to figure out subtracting fr
 
 michaelB -- 2022-03-21 08:15
 Fix problem with database creation.
+
+shyneC -- 2022-03-21 08:22
+Subtract from craneTime, added actualStars (for calculating cash vs stars which will be displayed)

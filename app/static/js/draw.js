@@ -162,7 +162,8 @@ function update_stars() {
 
     if (collect_star(starPositions[star_no][0], starPositions[star_no][1])) {
       var starCrane = 1 + Math.ceil(cranes / craneTime);
-      stars += starCrane;
+      actualStars += starCrane;
+      stars++;
       // Remove star from list
       starPositions.splice(star_no, 1);
       star_no--;
@@ -227,6 +228,7 @@ function collect_crane(sx, sy) {
 }
 
 function update_crane() {
+  if (cranes > 0) cranes--;
   let crane_no = 0;
   while (crane_no < cranePositions.length) {
     // Update coordinates
