@@ -5,6 +5,7 @@ bg_loaded = false;
 mg_loaded = false;
 fg_loaded = false;
 star_loaded = false;
+crane_loaded = false;
 
 let min_star_offset = 250;
 
@@ -127,9 +128,7 @@ star.src = "../images/star.png";
 star.addEventListener('load', function() {
   star_loaded = true;
 });
-// go thru array of starPositions
-// for each: see if on canvas, draw image, then update x
-// go thru again to delete those not on canvas
+
 function draw_stars() {
   if (star_loaded) {
     for (let i = 0; i < starPositions.length; i++) {
@@ -144,7 +143,7 @@ function draw_stars() {
 
 function collect_star(sx, sy) {
   if (inRect( sx, sy,
-        planeX - starWidth, planeY - starHeight, 
+        planeX - starWidth, planeY - starHeight,
         planeX + planeWidth + starWidth, planeY + planeHeight + starHeight)
       ) {
     return true;
@@ -160,9 +159,10 @@ function update_stars() {
     if (altitude > 200) {
       starPositions[star_no][1] -= dy * 0.005;
     }
-    
+
     if (collect_star(starPositions[star_no][0], starPositions[star_no][1])) {
-      stars++;
+      var starCrane = 1 + Math.ceil(cranes / craneTime);
+      stars += starCrane;
       // Remove star from list
       starPositions.splice(star_no, 1);
       star_no--;
@@ -170,7 +170,7 @@ function update_stars() {
     else if (star_no[0] < 0 - star.width) {
       // Remove star if goes left off-screen
       starPositions.splice(star_no, 1);
-      star_no--; 
+      star_no--;
     } else if(star_no[1] > c.clientHeight - star.height) { // just in case it hits the ground ever, remove it
       starPositions.splice(star_no, 1);
       star_no--;
@@ -183,7 +183,7 @@ function update_stars() {
 function spawn_stars() {
   // console.log("starPositions length: " + starPositions.length);
   for (let i = 0; i < 10; i++) {
-    if (Math.random() < 0.015) { //change possibility of spawning new star
+    if (Math.random() < 0.01) { //change possibility of spawning new star
       var starX = Math.floor(Math.random() * 25) + c.clientWidth + starWidth;
       var starY = Math.floor(Math.random() * c.clientHeight) + starHeight - min_star_offset;
       starPositions[starPositions.length] = new Array(2);
@@ -193,3 +193,75 @@ function spawn_stars() {
   }
 }
 
+// CRANE SETUP ======================
+
+// maybe make cranes fly
+
+let crane = new Image();
+let craneWidth = 50;
+let craneHeight = 50;
+crane.src = "../images/crane.png";
+crane.addEventListener('load', function() {
+  crane_loaded = true;
+});
+
+function draw_cranes() {
+  if (crane_loaded) {
+    for (let i = 0; i < cranePositions.length; i++) {
+      // console.log("i: " + i);
+      var craneX = cranePositions[i][0];
+      var craneY = cranePositions[i][1];
+      ctx.drawImage(crane, craneX, craneY, craneWidth, craneHeight);
+    }
+  }
+}
+
+function collect_crane(sx, sy) {
+  if (inRect( sx, sy,
+        planeX - craneWidth, planeY - craneHeight,
+        planeX + planeWidth + craneWidth, planeY + planeHeight + craneHeight)
+      ) {
+    return true;
+  }
+  return false;
+}
+
+function update_crane() {
+  let crane_no = 0;
+  while (crane_no < cranePositions.length) {
+    // Update coordinates
+    cranePositions[crane_no][0] -= dx * 0.01;
+    if (altitude > 200) {
+      cranePositions[crane_no][1] -= dy * 0.005;
+    }
+
+    if (collect_crane(cranePositions[crane_no][0], cranePositions[crane_no][1])) {
+      cranes += craneTime;
+      // Remove crane from list
+      cranePositions.splice(crane_no, 1);
+      crane_no--;
+    }
+    else if (crane_no[0] < 0 - crane.width) {
+      // Remove crane if goes left off-screen
+      cranePositions.splice(crane_no, 1);
+      crane_no--;
+    } else if(crane_no[1] > c.clientHeight - crane.height) { // just in case it hits the ground ever, remove it
+      cranePositions.splice(crane_no, 1);
+      crane_no--;
+    }
+
+    crane_no++;
+  }
+}
+
+function spawn_cranes() {
+  for (let i = 0; i < 10; i++) {
+    if (Math.random() < 0.0025) { //change possibility of spawning new crane
+      var craneX = Math.floor(Math.random() * 25) + c.clientWidth + craneWidth;
+      var craneY = Math.floor(Math.random() * c.clientHeight) + craneHeight - min_star_offset;
+      cranePositions[cranePositions.length] = new Array(2);
+      cranePositions[cranePositions.length - 1][0] = craneX;
+      cranePositions[cranePositions.length - 1][1] = craneY;
+    }
+  }
+}

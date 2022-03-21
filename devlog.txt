@@ -141,7 +141,7 @@ michaelB -- 2022-03-20 15:16
 Add fuel mechanic (for rudder system). Fix small bug in rudder system. Finish all upgrades.
 
 danielS -- 2022-03-20 15:47
-Add post-flight results screen. 
+Add post-flight results screen.
 Fix toggle between login and register for landing
 
 michaelB -- 2022-03-20 15:53
@@ -149,3 +149,6 @@ Overhaul upgrade system, removing need for level parameter. Add array of upgrade
 
 michaelB -- 2022-03-20 16:45
 Add cash methods (calculate flight cash, buy upgrades with cash).
+
+shyneC -- 2022-03-20 22:30
+Add cranes, add to stars with cranes involved. Need to figure out subtracting from craneTime.

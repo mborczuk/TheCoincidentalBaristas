@@ -14,15 +14,25 @@ var lastID = 0;
 var gameLoop = () => {
   clear();
   draw_bg();
+
   if(fall) {
     free_fall();
   }
   if (thrown) {
     update_env_offset();
+
     update_plane();
+
     update_stars();
     draw_stars();
     spawn_stars();
+
+    // console.log("cranes: " + cranes);
+    // if (cranes > 0) cranes--;
+
+    update_crane();
+    draw_cranes();
+    spawn_cranes();
   }
 
   draw_plane();
@@ -41,6 +51,7 @@ var stopIt = () => {
   console.log( requestID );
   window.cancelAnimationFrame(requestID);
   stars = 0;
+  cranes = 0;
 };
 
 gameLoop();

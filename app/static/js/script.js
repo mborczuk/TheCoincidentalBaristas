@@ -20,6 +20,8 @@ var starWorth = 5; // increase with upgrade
 var starPositions = [];
 
 // cranes
+var cranePositions = [];
+var cranes = 0;
 var craneTime = 3; // starting crane multiplier lasts 3s?
 
 var cash = 0;
