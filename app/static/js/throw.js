@@ -46,7 +46,7 @@ var throw_airplane = (e) => {
         starttime = new_date.getTime();
         // set velocity using distance formula, scale because otherwise the plane will never take off
         velocity = velocityScale * Math.sqrt(Math.pow(e.offsetX - mouseX, 2) + Math.pow(e.offsetY - mouseY, 2)) / (time);
-        console.log(velocity);
+        // console.log(velocity);
         velocity *= (1 + 0.1 * velocityUpscale); //Throwing Power Upgrade
         theta = Math.atan((e.offsetY - mouseY) / (e.offsetX - mouseX)) * -1; // arctan for theta
         vx = velocity * Math.cos(theta); // get x and y components of velocity
@@ -74,7 +74,7 @@ var keyPressed = (e) => {
     // }
     if(rudder) { //turning the plane
       if(thrown && altitude > 0 && fuel > 0) {
-          console.log(theta);
+          // console.log(theta);
           // first half of projectile motion
           if(theta > 0) {
             if(e.key == 'a') {

@@ -55,7 +55,7 @@ function update_delta(time) {
 
 function land_plane() {
   if (dx <= 0 && altitude <= 0) {
-    console.log("hori: " + roundedDistance); // actual horizontal distance
+    // console.log("hori: " + roundedDistance); // actual horizontal distance
     totalDistance += roundedDistance;
     distance = 0;
     thrown = false;
@@ -76,20 +76,16 @@ function free_fall() {
 }
 
 function update_plane() {
-    // console.log(velocity);
-    // update_velocity();
     // Time in between frames
     var date = new Date();
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
     starttime = date.getTime();
-    console.log(time);
     if (altitude > 0) {
       update_velocity(time);
       theta = Math.atan(vy / vx) * -1; // recalculate theta
       update_drag(time);
       update_delta(time);
     } else {
-      console.log(altitude);
       theta = -Math.abs(theta);
       dy = 0;
       velocity = vx;

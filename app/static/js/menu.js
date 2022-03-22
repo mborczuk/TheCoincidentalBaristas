@@ -39,7 +39,6 @@ document.getElementById('play').addEventListener("click", function() {
 });
 
 document.getElementById('replay').addEventListener("click", function() {
-    console.log("CLICKING");
     hide_results();
     gaming = false;
 })

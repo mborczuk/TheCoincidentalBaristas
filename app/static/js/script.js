@@ -35,12 +35,6 @@ var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
 
-var stopIt = () => {
-  console.log("stopIt invoked...");
-  console.log( requestID );
-  window.cancelAnimationFrame(requestID);
-};
-
 function clamp(n, min, max) {
   if (n < min) {
     return min

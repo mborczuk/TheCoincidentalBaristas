@@ -188,3 +188,6 @@ General bug fixes in upgrade system; works properly now.
 
 michaelB -- 2022-03-22 11:45
 Clear up upgrades page.
+
+danielS -- 2022-03-22 15:56
+Comment out debug statements.

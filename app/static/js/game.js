@@ -67,9 +67,9 @@ var reset = () => {
 
 var stopIt = () => {
   display_results();
-  console.log("Stars: " + stars);
-  console.log("stopIt invoked...")
-  console.log( requestID );
+  // console.log("Stars: " + stars);
+  // console.log("stopIt invoked...")
+  // console.log( requestID );
   window.cancelAnimationFrame(requestID);
   reset();
 };
