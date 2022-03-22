@@ -3,7 +3,7 @@ let star_result = document.getElementById('star-result');
 let dist_result = document.getElementById('dist-result');
 
 function display_altitude() {
-    document.getElementById('altitude').innerHTML = Math.round(altitude / 3780 * 4000) / 100;
+    document.getElementById('altitude').innerHTML = Math.round(altitude / 3780 * 4000) / 100 +"m";
 }
 
 function display_results() {
@@ -21,7 +21,7 @@ function hide_results() {
 }
 
 function display_velocity() {
-    document.getElementById('velocity').innerHTML = Math.round(velocity / 37.8) / 1000;
+    document.getElementById('velocity').innerHTML = Math.round(velocity / 37.8) / 1000 + "m/s";
 }
 
 function display_fuel() {
@@ -29,5 +29,5 @@ function display_fuel() {
 }
 
 function display_distance() {
-    document.getElementById('distance').innerHTML = roundedDistance;
+    document.getElementById('distance').innerHTML = roundedDistance + "m";
 }

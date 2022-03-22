@@ -47,15 +47,28 @@
       <button id="replay" type="button" class="btn btn-fill">Continue</button>
     </div>
     <div class="meters-container">
-      <span id="altitude">0</span>
-      <span id="velocity">0</span>
-      <span id="distance">0</span>
-      <span id="fuel">0</span>
+      <div class="meter">
+        <span class="meter-label">Altitude</span>
+        <span id="altitude">0m</span>
+      </div>
+      <div class="meter">
+        <span class="meter-label">Velocity</span>
+        <span id="velocity">0m/s</span>
+      </div>
+      <div class="meter">
+        <span class="meter-label">Distance</span>
+        <span id="distance">0m</span>
+      </div>
+      <div class="meter">
+        <span class="meter-label">Fuel</span>
+        <span id="fuel">0</span>
+      </div>
     </div>
   </div>
   <form action="/game" method="POST">
     <input id="secret" type="hidden" value="default">
   </form>
+
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="{{ url_for('static', filename='js/physics.js') }}"></script>
   <script src="{{ url_for('static', filename='js/draw.js') }}"></script>
