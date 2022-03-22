@@ -170,3 +170,6 @@ Add functioning play button to main menu.
 
 danielS -- 2022-03-22 08:20
 Prevent game refresh on continue.
+
+danielS -- 2022-03-22 08:31
+Add balance tracker on main menu.

@@ -26,6 +26,8 @@ for (let i = 0; i < upgrades.length; i++) {
             clickedLevel.innerHTML = "MAX"
             clickedPrice.innerHTML = ""
         }
+
+        update_balance();
     });
 }
 
@@ -44,7 +46,7 @@ document.getElementById('replay').addEventListener("click", function() {
 let menu = document.getElementById("menu-container");
 
 function draw_menu() {
-    console.log(menu.style.display)
+    update_balance();
     if (menu.style.display == "") {
         menu.style.display = "flex";
     }
@@ -54,4 +56,9 @@ function hide_menu() {
     if (menu.style.display == "flex") {
         menu.style.display = "";
     }
+}
+
+let balance = document.getElementById('balance');
+function update_balance() {
+    balance.innerHTML = "$" + cash
 }

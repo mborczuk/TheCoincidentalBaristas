@@ -12,7 +12,11 @@
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
     <div id="menu-container">
-      <h4>Upgrades</h4>
+      <div class="menu-header">
+        <h4>Upgrades</h4>
+        <h5>Balance:</h5>
+        <h5 id="balance">$0</h5>
+      </div>
       {% for upgrade in upgrade_list %}
       <div class="upgrade-container noselect" data-upgradeid="{{ loop.index0 }}">
         <span class="upgrade-name">{{ upgrade }}</span>

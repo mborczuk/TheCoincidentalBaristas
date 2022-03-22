@@ -110,7 +110,6 @@ canvas {
     transform: translate(-50%, -50%);
 
     width: 800px;
-    /* height: 490px; */
 
     display: none;
     flex-direction: column;
@@ -118,6 +117,18 @@ canvas {
     gap: 8px;
     border-radius: 20px;
     background-color: var(--white);
+}
+
+.menu-header {
+    display: flex;
+}
+
+.menu-header h4 {
+    margin-right: auto;
+}
+
+.menu-header h5:first-of-type {
+    margin-right: 1ch;
 }
 
 .upgrade-container {
