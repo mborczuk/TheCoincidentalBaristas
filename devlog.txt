@@ -170,3 +170,6 @@ Add functioning play button to main menu.
 
 danielS -- 2022-03-22 08:20
 Prevent game refresh on continue.
+
+michaelB -- 2022-03-22 08:25
+Fix glitch in upgrade system.
