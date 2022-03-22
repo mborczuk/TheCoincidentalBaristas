@@ -103,7 +103,7 @@ canvas {
 
 /* MENU STYLING =================== */
 
-.menu-container {
+#menu-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -112,7 +112,7 @@ canvas {
     width: 800px;
     /* height: 490px; */
 
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 40px 50px;
     gap: 8px;
@@ -133,6 +133,10 @@ canvas {
 
 .upgrade-container:first-of-type {
     margin-top: 15px;
+}
+
+.upgrade-container:last-of-type {
+    margin-bottom: 15px;
 }
 
 .upgrade-container:hover {

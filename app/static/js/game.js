@@ -44,7 +44,7 @@ var gameLoop = () => {
     render_game();
   } else {
     draw_bg();
-    // draw_menu();
+    draw_menu();
   }
   
   window.cancelAnimationFrame(requestID);

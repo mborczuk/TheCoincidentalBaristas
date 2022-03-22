@@ -164,3 +164,6 @@ Add basic upgrade menu layout.
 
 danielS -- 2022-03-21 22:13
 Add upgrade menu interactivity.
+
+danielS -- 2022-03-21 22:25
+Add functioning play button to main menu.

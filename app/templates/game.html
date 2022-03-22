@@ -11,7 +11,7 @@
 {% block content %}
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
-    <div class="menu-container">
+    <div id="menu-container">
       <h4>Upgrades</h4>
       {% for upgrade in upgrade_list %}
       <div class="upgrade-container noselect" data-upgradeid="{{ loop.index0 }}">
@@ -22,6 +22,7 @@
         <span class="upgrade-price">$n</span>
       </div>
       {% endfor %}
+      <button id="play" type="button" class="btn btn-fill">Play</button>
     </div>
     <div id="results-container">
       <h2>Results</h2>
