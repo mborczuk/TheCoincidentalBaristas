@@ -62,6 +62,7 @@ var reset = () => {
   cranePositions = [];
   planeX = 10;
   planeY = 428;
+  roundedDistance = 0;
 }
 
 var stopIt = () => {
