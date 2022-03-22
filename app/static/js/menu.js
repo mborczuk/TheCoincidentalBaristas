@@ -35,6 +35,12 @@ document.getElementById('play').addEventListener("click", function() {
     gaming = true;
 });
 
+document.getElementById('replay').addEventListener("click", function() {
+    console.log("CLICKING");
+    hide_results();
+    gaming = false;
+})
+
 let menu = document.getElementById("menu-container");
 
 function draw_menu() {

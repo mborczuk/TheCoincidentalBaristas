@@ -167,3 +167,6 @@ Add upgrade menu interactivity.
 
 danielS -- 2022-03-21 22:25
 Add functioning play button to main menu.
+
+danielS -- 2022-03-22 08:20
+Prevent game refresh on continue.

@@ -10,8 +10,14 @@ function display_results() {
     star_result.innerHTML = stars;
     dist_result = dist_result.innerHTML = roundedDistance + "m"
     document.getElementById('total-result').innerHTML = "$" + calculateCash();
+
     results.style.visibility = 'visible';
     results.style.opacity = '1';
+}
+
+function hide_results() {
+    results.style.visibility = 'hidden';
+    results.style.opacity = '0';
 }
 
 function display_velocity() {

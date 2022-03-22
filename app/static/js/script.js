@@ -25,7 +25,7 @@ var cranePositions = [];
 var cranes = 0;
 var craneTime = 187.5; // starting crane multiplier lasts 3s?
 
-var cash = 10000000;
+var cash = 0;
 var upgradeLevels = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var gaming = false;
