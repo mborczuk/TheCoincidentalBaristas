@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 {% endblock %}
 
-{% set upgrade_list = ["Lightweight", "Speed Up", "Crane Duration", 
+{% set upgrade_list = ["Lightweight", "Speed Up", "Crane Duration",
   "Throwing Power", "Steering Control", "Landing Gear", "Fuel Efficiency"] %}
 
 {% block content %}
@@ -62,6 +62,10 @@
       <div class="meter">
         <span class="meter-label">Fuel</span>
         <span id="fuel">0</span>
+      </div>
+      <div class="meter">
+        <span class="meter-label">Total Distance</span>
+        <span id="totalDistance">0m</span>
       </div>
     </div>
   </div>

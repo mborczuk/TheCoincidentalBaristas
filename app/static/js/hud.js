@@ -8,7 +8,7 @@ function display_altitude() {
 
 function display_results() {
     star_result.innerHTML = stars;
-    dist_result = dist_result.innerHTML = roundedDistance + "m"
+    dist_result.innerHTML = roundedDistance + "m"
     document.getElementById('total-result').innerHTML = "$" + calculateCash();
 
     results.style.visibility = 'visible';
@@ -30,4 +30,8 @@ function display_fuel() {
 
 function display_distance() {
     document.getElementById('distance').innerHTML = roundedDistance + "m";
+}
+
+function display_totalDistance() {
+    document.getElementById('totalDistance').innerHTML = Math.round((totalDistance + roundedDistance) * 100) / 100 + "m";
 }

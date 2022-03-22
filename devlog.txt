@@ -175,7 +175,7 @@ michaelB -- 2022-03-22 08:25
 Fix glitch in upgrade system.
 
 shyneC -- 2022-03-22 08:29
-Reset function
+Add reset function.
 
 danielS -- 2022-03-22 08:31
 Add balance tracker on main menu.
@@ -194,3 +194,6 @@ Comment out debug statements.
 
 danielS -- 2022-03-22 16:30
 Add HUD design & layout. Add meter units.
+
+shyneC -- 2022-03-22 17:50
+Add total distance.
