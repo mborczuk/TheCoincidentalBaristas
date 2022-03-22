@@ -17,11 +17,11 @@ for (let i = 0; i < upgrades.length; i++) {
     upgrades[i].addEventListener("click", function() {
         let clickedID = this.dataset.upgradeid;
         upgrade(clickedID);
-        
+
         // Get level & price nodes
         let clickedLevel = this.querySelector('.upgrade-level');
         let clickedPrice = upgrades[i].querySelector('.upgrade-price');
-        
+
         // Update based on new level
         if (upgradeLevels[clickedID] < prices[clickedID].length - 1) {
             clickedLevel.innerHTML = upgradeLevels[i] + 1
@@ -54,6 +54,7 @@ let menu = document.getElementById("menu-container");
 
 function draw_menu() {
     update_balance();
+    update_totalDistance();
     if (menu.style.display == "") {
         menu.style.display = "flex";
     }
@@ -68,4 +69,9 @@ function hide_menu() {
 let balance = document.getElementById('balance');
 function update_balance() {
     balance.innerHTML = "$" + cash
+}
+
+let total_distance = document.getElementById('totalDistance');
+function update_totalDistance() {
+    total_distance.innerHTML = "Progress: " + Math.round((totalDistance + roundedDistance) * 100) / 100 + "m";
 }
