@@ -11,8 +11,7 @@ function clear() {
 
 var lastID = 0;
 
-var gameLoop = () => {
-  clear();
+function render_game() {
   draw_bg();
 
   if(fall) {
@@ -37,6 +36,17 @@ var gameLoop = () => {
   display_velocity();
   display_fuel();
   display_distance();
+}
+
+var gameLoop = () => {
+  clear();
+  if (gaming) {
+    render_game();
+  } else {
+    draw_bg();
+    // draw_menu();
+  }
+  
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
 }

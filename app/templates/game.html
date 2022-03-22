@@ -8,6 +8,54 @@
 {% block content %}
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
+    <div class="menu-container">
+      <h4>Upgrades</h4>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+      <div class="upgrade-container">
+        <span class="upgrade-name">UPGRADE NAME</span>
+        <span class="upgrade-level">UPGRADE LEVEL</span>
+        <span class="upgrade-price">PRICE</span>
+      </div>
+    </div>
     <div id="results-container">
       <h2>Results</h2>
       <div class="stat-container">
@@ -28,10 +76,12 @@
         <button id="replay" onclick="window.location.href='/game'"type="button" class="btn btn-fill">Continue</button>
       </div>
     </div>
-    <span id="altitude">0</span>
-    <span id="velocity">0</span>
-    <span id="distance">0</span>
-    <span id="fuel">0</span>
+    <div class="meters-container">
+      <span id="altitude">0</span>
+      <span id="velocity">0</span>
+      <span id="distance">0</span>
+      <span id="fuel">0</span>
+    </div>
   </div>
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -40,5 +90,6 @@
   <script src="{{ url_for('static', filename='js/throw.js') }}"></script>
   <script src="{{ url_for('static', filename='js/upgrades.js') }}"></script>
   <script src="{{ url_for('static', filename='js/hud.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
   <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 {% endblock %}
