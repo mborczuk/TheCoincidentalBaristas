@@ -25,10 +25,7 @@ var cranePositions = [];
 var cranes = 0;
 var craneTime = 187.5; // starting crane multiplier lasts 3s?
 
-var cash = 0;
-var upgradeLevels = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-var gaming = false;
 
 var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
@@ -55,4 +52,11 @@ function wrap(n, min, max) {
 
 function inRect(px, py, x0, y0, x1, y1) {
   return (px >= x0) && (px <= x1) && (py >= y0) && (py <= y1);
+}
+
+function save() {
+  if(loggedIn) {
+    document.getElementById("secret").value = [totalDistance, cash, upgradeLevels, gaming];
+    document.getElementById("submit").submit();
+  }
 }

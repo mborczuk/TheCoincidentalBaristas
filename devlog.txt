@@ -197,3 +197,6 @@ Add HUD design & layout. Add meter units.
 
 shyneC -- 2022-03-22 17:50
 Add total distance.
+
+michaelB -- 2022-03-22 19:04
+Add saving and loading progress for logged in users.

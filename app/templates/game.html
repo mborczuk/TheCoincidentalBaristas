@@ -73,11 +73,25 @@
     <input id="secret" type="hidden" value="L" name="data">
   </form>
   <script type="text/javascript">
+    var cash = 0;
+    var upgradeLevels = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var totalDistance = 0;
+    var gaming = false;
     var loggedIn = "{{ loggedIn }}";
     console.log(loggedIn);
     if(loggedIn === "True") {
       loggedIn = true;
-      console.log(loggedIn);
+      if("{{ gaming }}" === "1") {
+        gaming = true;
+      }
+      totalDistance = parseFloat("{{ totalDistance}}")
+      cash = parseInt("{{ cash }}")
+      upgradeLevels = []
+      console.log(upgradeLevels)
+      for(var i = 0; i < "{{ upgrades }}".length; i++) {
+        upgradeLevels.push(parseInt("{{ upgrades }}".charAt(i)));
+      }
+      console.log(loggedIn + " " + cash + " " + totalDistance + " " + upgradeLevels + " " + gaming);
     } else {
       loggedIn = false;
     }
@@ -88,7 +102,9 @@
   <script src="{{ url_for('static', filename='js/throw.js') }}"></script>
   <script src="{{ url_for('static', filename='js/upgrades.js') }}"></script>
   <script src="{{ url_for('static', filename='js/hud.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/save.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
   <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+  <div class="btn-container">
+    <a href="logout" id="logout" type="button" class="btn btn-lg btn-fill">Logout</a>
+</div>
 {% endblock %}

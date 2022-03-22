@@ -1,14 +1,18 @@
 upgrades = document.getElementsByClassName("upgrade-container");
 
 for (let i = 0; i < upgrades.length; i++) {
-    
-    // Initialize upgrade level & pricing
     let levelNode = upgrades[i].querySelector('.upgrade-level');
-    levelNode.innerHTML = upgradeLevels[i] + 1
-    
     let price = upgrades[i].querySelector('.upgrade-price');
-    price.innerHTML = "$" + prices[i][upgradeLevels[i]]
-
+    // Initialize upgrade level & pricing
+    if(prices[i][upgradeLevels[i]] != null) {
+        levelNode.innerHTML = upgradeLevels[i] + 1
+        price.innerHTML = "$" + prices[i][upgradeLevels[i]]
+    }
+    else {
+        upgrades[i].querySelector('.level-label').innerHTML = "MAXED OUT";
+        levelNode.innerHTML = ""
+        price.innerHTML = ""
+    }
     // Buy upgrades
     upgrades[i].addEventListener("click", function() {
         let clickedID = this.dataset.upgradeid;
@@ -28,6 +32,7 @@ for (let i = 0; i < upgrades.length; i++) {
             clickedPrice.innerHTML = ""
         }
 
+
         update_balance();
     });
 }
@@ -36,12 +41,13 @@ for (let i = 0; i < upgrades.length; i++) {
 document.getElementById('play').addEventListener("click", function() {
     hide_menu();
     gaming = true;
+    save();
 });
 
 document.getElementById('replay').addEventListener("click", function() {
-    hide_results();
-    save();
+    hide_results();    
     gaming = false;
+    save();
 })
 
 let menu = document.getElementById("menu-container");

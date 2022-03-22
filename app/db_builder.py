@@ -24,7 +24,7 @@ def signup(username, password):
       return True
 
   else:
-      c.execute('INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)', (username, password, 0, "000000000", 0, False))
+      c.execute('INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)', (username, password, 0, "0000000", 0, False))
       
       db.commit()
       # Uses empty quotes since it will return false when checked as a boolean
@@ -42,8 +42,24 @@ def login(username, password):
 
   else:
       return True
+def load(username):
+  c.execute("""SELECT * FROM users WHERE username=?""", [username])
+  return c.fetchone()
 
 def save(username, data):
+  print(username)
   saveData = data.split(",")
   print(saveData)
-  # c.execute("""UPDATE users SET WHERE username=?""", username)
+  upgrades = ""
+  for i in range(2, 9):
+    upgrades += saveData[i]
+  gaming = False
+  if(saveData[9] == "true"):
+    gaming = True
+  print(gaming)
+  print(upgrades)
+  c.execute("""UPDATE users SET cash=?, upgrades=?, progress=?, gaming=? WHERE username=?""", [saveData[1], upgrades, saveData[0], gaming, username])
+  db.commit();
+  
+  
+  

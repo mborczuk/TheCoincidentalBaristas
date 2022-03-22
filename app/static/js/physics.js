@@ -13,7 +13,8 @@ var velocityUpscale = 0;
 var maxFuel = 20;
 var fuel = maxFuel;
 var roundedDistance = 0;
-var totalDistance = 0;
+
+
 
 // Drag
 var dFvx = 0;
@@ -61,7 +62,6 @@ function land_plane() {
   if (dx <= 0 && altitude <= 0) {
     // console.log("hori: " + roundedDistance); // actual horizontal distance
     totalDistance += roundedDistance;
-    console.log(totalDistance)
     thrown = false;
     velocity = 0;
     theta = 0;
@@ -79,7 +79,6 @@ function free_fall() {
 }
 
 function update_plane() {
-    console.log(totalDistance)
     // Time in between frames
     var date = new Date();
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)
