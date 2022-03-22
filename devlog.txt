@@ -185,3 +185,6 @@ Fix order of upgrades in menu; fix glitch where last level of upgrade was not sh
 
 michaelB -- 2022-03-22 11:31
 General bug fixes in upgrade system; works properly now.
+
+michaelB -- 2022-03-22 11:45
+Clear up upgrades page.

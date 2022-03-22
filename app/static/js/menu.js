@@ -23,7 +23,8 @@ for (let i = 0; i < upgrades.length; i++) {
             clickedLevel.innerHTML = upgradeLevels[i] + 1
             clickedPrice.innerHTML = "$" + prices[clickedID][upgradeLevels[clickedID]]
         } else {
-            clickedLevel.innerHTML = "MAX"
+            upgrades[i].querySelector('.level-label').innerHTML = "MAXED OUT";
+            clickedLevel.innerHTML = ""
             clickedPrice.innerHTML = ""
         }
 

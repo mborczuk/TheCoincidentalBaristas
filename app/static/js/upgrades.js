@@ -75,6 +75,8 @@ var upgrade = (upgradeID) => {
             break;
           }
           fuelRate = fuelRate - 0.2;
+          maxFuel += 10;
+          fuel = maxFuel;
           cash -= cost;
           break;
         default:
