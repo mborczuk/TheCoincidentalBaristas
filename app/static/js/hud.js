@@ -31,3 +31,7 @@ function display_fuel() {
 function display_distance() {
     document.getElementById('distance').innerHTML = roundedDistance + "m";
 }
+
+function display_totalDistance() {
+    document.getElementById('totalDistance').innerHTML = Math.round((totalDistance + roundedDistance) * 100) / 100 + "m";
+}
