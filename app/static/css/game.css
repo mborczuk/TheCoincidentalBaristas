@@ -21,7 +21,7 @@ canvas {
     padding: 10px;
     border-radius: 0 0 10px 10px;
     width: 1000px;
-    justify-content: center;   
+    justify-content: center;
     background-color: var(--white);
     filter: drop-shadow(0 0 2px var(--light-gray));
 
@@ -61,7 +61,7 @@ canvas {
     border-radius: 20px;
     padding: 40px 50px 60px;
     background-color: var(--white);
-    
+
     visibility: hidden;
     opacity: 0;
     transition: opacity .5s ease-out;
@@ -98,7 +98,7 @@ canvas {
     width: 150px;
     text-transform: uppercase;
     font-weight: 600;
-    transition: 
+    transition:
         letter-spacing cubic-bezier(.17,.67,.72,1.6) .15s,
         background-color ease-out .10s,
         border-color ease-out .10s;
@@ -156,6 +156,11 @@ canvas {
 }
 
 .menu-header h5:first-of-type {
+    margin-right: 1ch;
+}
+
+.menu-header h5:last-of-type {
+    margin-left: 5ch;
     margin-right: 1ch;
 }
 

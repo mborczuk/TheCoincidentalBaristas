@@ -16,6 +16,7 @@
         <h4>Upgrades</h4>
         <h5>Balance:</h5>
         <h5 id="balance">$0</h5>
+        <h5 id="totalDistance">0m</h5>
       </div>
       {% for upgrade in upgrade_list %}
       <div class="upgrade-container noselect" data-upgradeid="{{ loop.index0 }}">
@@ -62,10 +63,6 @@
       <div class="meter">
         <span class="meter-label">Fuel</span>
         <span id="fuel">0</span>
-      </div>
-      <div class="meter">
-        <span class="meter-label">Total Distance</span>
-        <span id="totalDistance">0m</span>
       </div>
     </div>
   </div>

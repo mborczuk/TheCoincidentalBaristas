@@ -36,7 +36,6 @@ function render_game() {
   display_velocity();
   display_fuel();
   display_distance();
-  display_totalDistance();
 }
 
 var gameLoop = () => {

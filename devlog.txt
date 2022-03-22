@@ -195,5 +195,5 @@ Comment out debug statements.
 danielS -- 2022-03-22 16:30
 Add HUD design & layout. Add meter units.
 
-shyneC -- 2022-03-22 17:50
+shyneC -- 2022-03-22 18:23
 Add total distance.
