@@ -8,7 +8,7 @@ var dy = 0;
 var ay = 9.8 * 3780;
 var kineticFrictionCoefficient = 1.1;
 var ax = -ay * kineticFrictionCoefficient;
-var totalDistance = 0;
+
 var velocityUpscale = 0;
 var maxFuel = 20;
 var fuel = maxFuel;

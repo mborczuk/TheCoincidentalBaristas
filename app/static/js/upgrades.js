@@ -1,4 +1,4 @@
-prices = [[30, 120, 250], [40, 170, 320], [325, 1125], [90, 180, 290, 400, 410], [30, 120, 250, 420], [80, 300, 450, 650], [100, 120, 140, 160, 200], [180, 430, 720], [260, 870, 1500, 2550]]
+prices = [[30, 120, 250, null], [40, 170, 320, null], [325, 1125, null], [90, 180, 290, 400, 410, null], [120, 480, 1120, null], [100, 120, 140, 160, 200, null], [180, 430, 720, null]]
 var canBuy = (cost) => {
   if(cash >= cost) {
     return true;
@@ -51,27 +51,28 @@ var upgrade = (upgradeID) => {
           velocityUpscale = upgradeLevels[upgradeID];
           break;
         case 4: // rudder upgrade
-          if(upgradeLevels[5] > 4) { // cannot go over level 4
-            upgradeLevels[5] = 4;
+          if(upgradeLevels[4] > 3) { // cannot go over level 3
+            upgradeLevels[4] = 3;
             return;
           }
           rudder = true;
-          if(upgradeLevels[upgradeID] > 1) {
-            angle_modifier = angle_modifier + 2;
+          if(upgradeLevels[4] > 1) {
+            angle_modifier += 2;
           }
+          console.log(angle_modifier);
           cash -= cost;
           break;
         case 5: // friction reduction upgrade
-          if(upgradeLevels[6] > 5) { // cannot go over level 5
-            upgradeLevels[6] = 5;
+          if(upgradeLevels[5] > 5) { // cannot go over level 5
+            upgradeLevels[5] = 5;
             return;
           }
           kineticFrictionCoefficient = kineticFrictionCoefficient - 0.1;
           cash -= cost;
           break;
         case 6: // fuel upgrade
-          if(upgradeLevels[7] > 3) { // cannot go over level 3
-            upgradeLevels[7] = 3;
+          if(upgradeLevels[6] > 3) { // cannot go over level 3
+            upgradeLevels[6] = 3;
             return;
           }
           fuelRate = fuelRate - 0.2;

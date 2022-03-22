@@ -13,13 +13,14 @@ for (let i = 0; i < upgrades.length; i++) {
     upgrades[i].addEventListener("click", function() {
         let clickedID = this.dataset.upgradeid;
         console.log(clickedID);
-        upgrade(clickedID);
+        upgrade(clickedID); // MAKE THIS RETURN TRUE/FALSE
         
         // Get level & price nodes
         let clickedLevel = this.querySelector('.upgrade-level');
         let clickedPrice = upgrades[i].querySelector('.upgrade-price');
         
         // Update based on new level
+        // FIX -- never gets to last level
         if (upgradeLevels[clickedID] < prices[clickedID].length - 1) {
             clickedLevel.innerHTML = upgradeLevels[i] + 1
             clickedPrice.innerHTML = "$" + prices[clickedID][upgradeLevels[clickedID]]

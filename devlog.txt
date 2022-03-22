@@ -179,3 +179,6 @@ Reset function
 
 danielS -- 2022-03-22 08:31
 Add balance tracker on main menu.
+
+michaelB -- 2022-03-22 09:55
+Fix order of upgrades in menu; fix glitch where last level of upgrade was not showing up.

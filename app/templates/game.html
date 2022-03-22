@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 {% endblock %}
 
-{% set upgrade_list = ["Lightweight", "Speed Up", "Steering Control", "Fuel Efficiency", 
-  "Throwing Power", "Crane Duration", "Landing Gear"] %}
+{% set upgrade_list = ["Lightweight", "Speed Up", "Crane Duration", 
+  "Throwing Power", "Steering Control", "Landing Gear", "Fuel Efficiency"] %}
 
 {% block content %}
   <div class="layout-container">
@@ -53,7 +53,9 @@
       <span id="fuel">0</span>
     </div>
   </div>
-
+  <form action="/game" method="POST">
+    <input id="secret" type="hidden" value="default">
+  </form>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="{{ url_for('static', filename='js/physics.js') }}"></script>
   <script src="{{ url_for('static', filename='js/draw.js') }}"></script>
