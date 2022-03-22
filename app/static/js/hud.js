@@ -8,7 +8,7 @@ function display_altitude() {
 
 function display_results() {
     star_result.innerHTML = stars;
-    dist_result = dist_result.innerHTML = roundedDistance + "m"
+    dist_result.innerHTML = roundedDistance + "m"
     document.getElementById('total-result').innerHTML = "$" + calculateCash();
 
     results.style.visibility = 'visible';

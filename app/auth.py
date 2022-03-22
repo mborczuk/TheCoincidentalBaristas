@@ -7,6 +7,7 @@ bp = Blueprint('auth', __name__)
 
 def logged_in():
     """Returns whether a user is logged in or not."""
+    print(session.keys())
     return 'username' in session.keys()
 
 def guest_only(f):

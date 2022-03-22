@@ -9,7 +9,6 @@ var mouseY;
 
 var altitude = 0;
 var distance = 0;
-var totalDistance = 0;
 
 var planeX = 10;
 var planeY = 428;
@@ -56,11 +55,4 @@ function wrap(n, min, max) {
 
 function inRect(px, py, x0, y0, x1, y1) {
   return (px >= x0) && (px <= x1) && (py >= y0) && (py <= y1);
-}
-
-function save() {
-  document.getElementById("secret").value = [totalDistance, ];
-}
-function load() {
-
 }

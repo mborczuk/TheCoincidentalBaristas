@@ -40,6 +40,7 @@ document.getElementById('play').addEventListener("click", function() {
 
 document.getElementById('replay').addEventListener("click", function() {
     hide_results();
+    save();
     gaming = false;
 })
 
