@@ -26,10 +26,11 @@ def landing():
 @app.route("/game")
 def gaming():
     return render_template('game.html')
+
 @app.route("/game", methods=["POST"])
 def save_js_data():
-    
     return render_template('game.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

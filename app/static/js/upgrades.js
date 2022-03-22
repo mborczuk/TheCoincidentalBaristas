@@ -9,16 +9,15 @@ var upgrade = (upgradeID) => {
     cost = prices[upgradeID][upgradeLevels[upgradeID]]; // get cost of the upgrade
     console.log(cost);
     if (canBuy(cost)) {
-      if (upgradeLevels[upgradeID] < prices[upgradeID].length - 1) {
+      if (upgradeLevels[upgradeID] < prices[upgradeID].length) {
         upgradeLevels[upgradeID]++;
       }
-      console.log(upgradeID);
       switch(parseInt(upgradeID)) {
         case 0: // weight upgrade
           console.log("hi");
           if(upgradeLevels[0] > 3) { // cannot go over level 3
             upgradeLevels[0] = 3;
-            return;
+            break;
           }
           if(ay > 0) {
             ay = ay - 5000;
@@ -29,7 +28,7 @@ var upgrade = (upgradeID) => {
         case 1: // speed upgrade
           if(upgradeLevels[1] > 3) { // cannot go over level 3
             upgradeLevels[1] = 3;
-            return;
+            break;
           }
           dragUpgrade = upgradeLevels[upgradeID];
           cash -= cost;
@@ -37,7 +36,7 @@ var upgrade = (upgradeID) => {
         case 2: // crane duration upgrade
           if(upgradeLevels[2] > 2) { // cannot go over level 2
             upgradeLevels[2] = 2;
-            return;
+            break;
           }
           craneTime = 125 + craneTime;
           cash -= cost;
@@ -45,7 +44,7 @@ var upgrade = (upgradeID) => {
         case 3: // throwing power upgrade
           if(upgradeLevels[3] > 5) { // cannot go over level 5
             upgradeLevels[3] = 5;
-            return;
+            break;
           }
           cash -= cost;
           velocityUpscale = upgradeLevels[upgradeID];
@@ -53,7 +52,7 @@ var upgrade = (upgradeID) => {
         case 4: // rudder upgrade
           if(upgradeLevels[4] > 3) { // cannot go over level 3
             upgradeLevels[4] = 3;
-            return;
+            break;
           }
           rudder = true;
           if(upgradeLevels[4] > 1) {
@@ -65,7 +64,7 @@ var upgrade = (upgradeID) => {
         case 5: // friction reduction upgrade
           if(upgradeLevels[5] > 5) { // cannot go over level 5
             upgradeLevels[5] = 5;
-            return;
+            break;
           }
           kineticFrictionCoefficient = kineticFrictionCoefficient - 0.1;
           cash -= cost;
@@ -73,7 +72,7 @@ var upgrade = (upgradeID) => {
         case 6: // fuel upgrade
           if(upgradeLevels[6] > 3) { // cannot go over level 3
             upgradeLevels[6] = 3;
-            return;
+            break;
           }
           fuelRate = fuelRate - 0.2;
           cash -= cost;

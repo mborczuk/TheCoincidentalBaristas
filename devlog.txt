@@ -182,3 +182,6 @@ Add balance tracker on main menu.
 
 michaelB -- 2022-03-22 09:55
 Fix order of upgrades in menu; fix glitch where last level of upgrade was not showing up.
+
+michaelB -- 2022-03-22 11:31
+General bug fixes in upgrade system; works properly now.
