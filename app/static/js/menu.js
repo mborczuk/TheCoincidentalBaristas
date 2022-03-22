@@ -12,6 +12,7 @@ for (let i = 0; i < upgrades.length; i++) {
     // Buy upgrades
     upgrades[i].addEventListener("click", function() {
         let clickedID = this.dataset.upgradeid;
+        console.log(clickedID);
         upgrade(clickedID);
         
         // Get level & price nodes
