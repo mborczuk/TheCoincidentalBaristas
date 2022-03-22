@@ -46,9 +46,22 @@ var gameLoop = () => {
     draw_bg();
     draw_menu();
   }
-  
+
   window.cancelAnimationFrame(requestID);
   requestID = window.requestAnimationFrame(gameLoop);
+}
+
+var reset = () => {
+  stars = 0;
+  cranes = 0;
+  altitude = 0;
+  velocity = 0;
+  distance = 0;
+  fuel = maxFuel;
+  starPositions = [];
+  cranePositions = [];
+  planeX = 10;
+  planeY = 428;
 }
 
 var stopIt = () => {
@@ -57,8 +70,7 @@ var stopIt = () => {
   console.log("stopIt invoked...")
   console.log( requestID );
   window.cancelAnimationFrame(requestID);
-  stars = 0;
-  cranes = 0;
+  reset();
 };
 
 gameLoop();

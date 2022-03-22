@@ -12,14 +12,17 @@ var upgrade = (upgradeID) => {
       if (upgradeLevels[upgradeID] < prices[upgradeID].length - 1) {
         upgradeLevels[upgradeID]++;
       }
-      switch(upgradeID) {
+      console.log(upgradeID);
+      switch(parseInt(upgradeID)) {
         case 0: // weight upgrade
+          console.log("hi");
           if(upgradeLevels[0] > 3) { // cannot go over level 3
             upgradeLevels[0] = 3;
             return;
           }
           if(ay > 0) {
             ay = ay - 5000;
+            mass = mass - 1;
             cash -= cost;
           }
           break;
@@ -47,15 +50,7 @@ var upgrade = (upgradeID) => {
           cash -= cost;
           velocityUpscale = upgradeLevels[upgradeID];
           break;
-        case 4: // lightweight upgrade
-          if(upgradeLevels[4] > 4) { // cannot go over level 4
-            upgradeLevels[4] = 4;
-            return;
-          }
-          mass = mass - 1;
-          cash -= cost;
-          break;
-        case 5: // rudder upgrade
+        case 4: // rudder upgrade
           if(upgradeLevels[5] > 4) { // cannot go over level 4
             upgradeLevels[5] = 4;
             return;
@@ -66,7 +61,7 @@ var upgrade = (upgradeID) => {
           }
           cash -= cost;
           break;
-        case 6: // friction reduction upgrade
+        case 5: // friction reduction upgrade
           if(upgradeLevels[6] > 5) { // cannot go over level 5
             upgradeLevels[6] = 5;
             return;
@@ -74,23 +69,12 @@ var upgrade = (upgradeID) => {
           kineticFrictionCoefficient = kineticFrictionCoefficient - 0.1;
           cash -= cost;
           break;
-        case 7: // fuel upgrade
+        case 6: // fuel upgrade
           if(upgradeLevels[7] > 3) { // cannot go over level 3
             upgradeLevels[7] = 3;
             return;
           }
           fuelRate = fuelRate - 0.2;
-          cash -= cost;
-          break;
-        case 8: // plane model upgrade
-          if(upgradeLevels[8] > 4) { // cannot go over level 4
-            upgradeLevels[8] = 4;
-            return;
-          }
-          maxFuel += 5;
-          ay = ay - 1500;
-          mass -= 1;
-          velocityScale = velocityScale + 2;
           cash -= cost;
           break;
         default:
