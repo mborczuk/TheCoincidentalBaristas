@@ -25,11 +25,15 @@ def landing():
 # for testing:
 @app.route("/game")
 def gaming():
-    return render_template('game.html')
+    print(session.keys())
+    return render_template('game.html', loggedIn = auth.logged_in())
 
 @app.route("/game", methods=["POST"])
 def save_js_data():
-    return render_template('game.html')
+    print(session)
+    print(request.form)
+    db_builder.save(session['username'], request.form['data'])
+    return render_template('game.html', loggedIn = auth.logged_in())
 
 if __name__ == "__main__":
     app.debug = True

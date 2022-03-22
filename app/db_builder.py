@@ -9,7 +9,7 @@ c = db.cursor()               #facilitate db ops -- you will use cursor to trigg
 
 def dbsetup():
 
-  command = "CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, cash INTEGER, progress INTEGER)"
+  command = "CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, cash INTEGER, upgrades TEXT, progress INTEGER, gaming BOOLEAN)"
   c.execute(command)
 
   #command = "CREATE TABLE IF NOT EXISTS upgrades(user_id"
@@ -24,7 +24,7 @@ def signup(username, password):
       return True
 
   else:
-      c.execute('INSERT INTO users VALUES (null, ?, ?, ?, ?)', (username, password, 0, 0))
+      c.execute('INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)', (username, password, 0, "000000000", 0, False))
       
       db.commit()
       # Uses empty quotes since it will return false when checked as a boolean
@@ -42,3 +42,8 @@ def login(username, password):
 
   else:
       return True
+
+def save(username, data):
+  saveData = data.split(",")
+  print(saveData)
+  # c.execute("""UPDATE users SET WHERE username=?""", username)

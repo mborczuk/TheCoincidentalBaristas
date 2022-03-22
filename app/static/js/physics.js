@@ -13,6 +13,8 @@ var velocityUpscale = 0;
 var maxFuel = 20;
 var fuel = maxFuel;
 var roundedDistance = 0;
+var totalDistance = 0;
+
 // Drag
 var dFvx = 0;
 var dFvy = 0;
@@ -21,6 +23,8 @@ var mass = 20;
 
 function calculateCash() { // calculate and add to cash
   let cashToAdd = Math.round(actualStars * 5 + roundedDistance * 0.7);
+  roundedDistance = 0;
+  actualStars = 0;
   cash += cashToAdd;
   return cashToAdd;
 }
@@ -57,11 +61,10 @@ function land_plane() {
   if (dx <= 0 && altitude <= 0) {
     // console.log("hori: " + roundedDistance); // actual horizontal distance
     totalDistance += roundedDistance;
-    distance = 0;
+    console.log(totalDistance)
     thrown = false;
     velocity = 0;
     theta = 0;
-    fuel = maxFuel;
     stopIt();
   }
 }
@@ -76,6 +79,7 @@ function free_fall() {
 }
 
 function update_plane() {
+    console.log(totalDistance)
     // Time in between frames
     var date = new Date();
     var time = ((date.getTime() - starttime)) / 1000; // add 0.5 of a second so the plane starts a little faster (looks smoother)

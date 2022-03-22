@@ -66,16 +66,26 @@
       </div>
     </div>
   </div>
-  <form action="/game" method="POST">
-    <input id="secret" type="hidden" value="default">
+  <form action="{{ url_for('gaming') }}" method="POST" id="submit">
+    <input id="secret" type="hidden" value="L" name="data">
   </form>
-
+  <script type="text/javascript">
+    var loggedIn = "{{ loggedIn }}";
+    console.log(loggedIn);
+    if(loggedIn === "True") {
+      loggedIn = true;
+      console.log(loggedIn);
+    } else {
+      loggedIn = false;
+    }
+  </script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="{{ url_for('static', filename='js/physics.js') }}"></script>
   <script src="{{ url_for('static', filename='js/draw.js') }}"></script>
   <script src="{{ url_for('static', filename='js/throw.js') }}"></script>
   <script src="{{ url_for('static', filename='js/upgrades.js') }}"></script>
   <script src="{{ url_for('static', filename='js/hud.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/save.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
   <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 {% endblock %}
