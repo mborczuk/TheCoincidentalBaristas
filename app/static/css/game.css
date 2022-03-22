@@ -115,7 +115,7 @@ canvas {
     display: flex;
     flex-direction: column;
     padding: 40px 50px;
-    gap: 4px;
+    gap: 8px;
     border-radius: 20px;
     background-color: var(--white);
 }
@@ -125,13 +125,30 @@ canvas {
     gap: 15px;
     padding: 5px 20px;
     border-radius: 6px;
-    filter: drop-shadow(0 0 3px var(--light-gray));
+    filter: drop-shadow(0 0 2px var(--light-gray));
     background-color: var(--white);
+    transition: background-color 0.1s ease-out;
+    cursor: pointer;
 }
 
 .upgrade-container:first-of-type {
     margin-top: 15px;
 }
+
+.upgrade-container:hover {
+    background-color: var(--light-gray);
+}
+
 .upgrade-name {
     margin-right: auto;
 }
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }

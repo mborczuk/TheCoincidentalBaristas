@@ -8,8 +8,8 @@ var canBuy = (cost) => {
 var upgrade = (upgradeID) => {
     cost = prices[upgradeID][upgradeLevels[upgradeID]]; // get cost of the upgrade
     console.log(cost);
-    if(canBuy(cost)) {
-      if(upgradeID < upgradeLevels.length) {
+    if (canBuy(cost)) {
+      if (upgradeLevels[upgradeID] < prices[upgradeID].length - 1) {
         upgradeLevels[upgradeID]++;
       }
       switch(upgradeID) {

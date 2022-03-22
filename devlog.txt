@@ -158,3 +158,9 @@ Fix problem with database creation.
 
 shyneC -- 2022-03-21 08:22
 Subtract from craneTime, added actualStars (for calculating cash vs stars which will be displayed)
+
+danielS -- 2022-03-21 21:21
+Add basic upgrade menu layout.
+
+danielS -- 2022-03-21 22:13
+Add upgrade menu interactivity.

@@ -5,56 +5,23 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
 {% endblock %}
 
+{% set upgrade_list = ["Lightweight", "Speed Up", "Steering Control", "Fuel Efficiency", 
+  "Throwing Power", "Crane Duration", "Landing Gear"] %}
+
 {% block content %}
   <div class="layout-container">
     <canvas width="1000" height="600" id="game_canvas"></canvas>
     <div class="menu-container">
       <h4>Upgrades</h4>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
+      {% for upgrade in upgrade_list %}
+      <div class="upgrade-container noselect" data-upgradeid="{{ loop.index0 }}">
+        <span class="upgrade-name">{{ upgrade }}</span>
+        <span class="level-label">Level
+          <span class="upgrade-level">n</span>
+        </span>
+        <span class="upgrade-price">$n</span>
       </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
-      <div class="upgrade-container">
-        <span class="upgrade-name">UPGRADE NAME</span>
-        <span class="upgrade-level">UPGRADE LEVEL</span>
-        <span class="upgrade-price">PRICE</span>
-      </div>
+      {% endfor %}
     </div>
     <div id="results-container">
       <h2>Results</h2>
