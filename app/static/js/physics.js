@@ -76,6 +76,7 @@ function free_fall() {
     speed = 0;
     fall = false;
   }
+  altitude = 0;
 }
 
 function update_plane() {
@@ -98,7 +99,7 @@ function update_plane() {
     // actual distance the plane SHOULD have gone
     distance += dx / 5;
     altitude -= dy / 40;
-    roundedDistance = Math.round(distance / 37.8) / 100;
+    roundedDistance = Math.abs(Math.round(distance / 37.8) / 100);
 
     if (altitude < 0) {
       altitude = 0;
