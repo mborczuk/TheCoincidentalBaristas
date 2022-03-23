@@ -9,7 +9,7 @@ Aryaman - Flask Routing, DB stuff
 ## Description
 The project is a game that uses physics to simulate the flight path of a paper airplane, and features can be upgraded using cash gained on the flight. The number of meters flown by the plane will be shown on a leaderboard with other players. Players can collect boosts on their flight that give them cash multipliers.
 
-## Launch Codes
+## Launch Codes - Run Locally
 ### Clone Repository
 
 Clone this repository to your computer with ssh link:
@@ -46,3 +46,7 @@ $ git clone git@github.com:mborczuk/TheCoincidentalBaristas.git
 ### Launch Site
 
 Go to http://127.0.0.1:5000/ in your browser.
+
+## Launch Codes - Don't Run Locally
+
+Go to http://192.34.56.31/p2 or softdev.miczuk.com/p2.
