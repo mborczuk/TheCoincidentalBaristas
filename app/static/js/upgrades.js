@@ -4,7 +4,7 @@ var canBuy = (cost, upgradeID) => {
   if(cash < cost) {
     return false;
   }
-  if(upgradeLevels[upgradeID] > prices[upgradeID].length - 1) {
+  if(upgradeLevels[upgradeID] >= prices[upgradeID].length - 1) {
     return false;
   }
   return true;
