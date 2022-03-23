@@ -69,6 +69,10 @@
       <div class="btn-container">
         <a href="logout" id="logout" type="button" class="btn btn-fill">Logout</a>
       </div>
+    {% else %}
+      <div class="btn-container">
+        <a href="/" id="login" type="button" class="btn btn-fill">Login</a>
+      </div>
     {% endif %}
   </div>
   <form action="{{ url_for('gaming') }}" method="POST" id="submit">
