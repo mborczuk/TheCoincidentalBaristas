@@ -200,3 +200,6 @@ Add total distance.
 
 michaelB -- 2022-03-22 19:04
 Add saving and loading progress for logged in users.
+
+michaelB -- 2022-03-23 09:35
+Apply upgrades to logged in users when progress is loaded. Clean up upgrade code.

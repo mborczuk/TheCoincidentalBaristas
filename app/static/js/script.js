@@ -27,6 +27,7 @@ var craneTime = 187.5; // starting crane multiplier lasts 3s?
 
 
 
+
 var clear = (e) => {
   ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
