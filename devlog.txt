@@ -203,3 +203,6 @@ Add saving and loading progress for logged in users.
 
 michaelB -- 2022-03-23 09:35
 Apply upgrades to logged in users when progress is loaded. Clean up upgrade code.
+
+danielS -- 2022-03-23 14:33
+Make logout button accessible to logged in users only.

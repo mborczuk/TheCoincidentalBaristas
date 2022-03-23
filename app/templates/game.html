@@ -65,6 +65,11 @@
         <span id="fuel">0</span>
       </div>
     </div>
+    {% if loggedIn %}
+      <div class="btn-container">
+        <a href="logout" id="logout" type="button" class="btn btn-fill">Logout</a>
+      </div>
+    {% endif %}
   </div>
   <form action="{{ url_for('gaming') }}" method="POST" id="submit">
     <input id="secret" type="hidden" value="L" name="data">
@@ -100,7 +105,4 @@
   <script src="{{ url_for('static', filename='js/hud.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
   <script src="{{ url_for('static', filename='js/game.js') }}"></script>
-  <div class="btn-container">
-    <a href="logout" id="logout" type="button" class="btn btn-lg btn-fill">Logout</a>
-</div>
 {% endblock %}

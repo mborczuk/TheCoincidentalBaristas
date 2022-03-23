@@ -129,6 +129,10 @@ canvas {
     color: var(--dark-red);
 }
 
+.btn-container {
+    margin-top: 10px;
+}
+
 /* MENU STYLING =================== */
 
 #menu-container {
