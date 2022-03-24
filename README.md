@@ -7,7 +7,7 @@ Daniel - Front-end (JS graphics, canvas)
 Aryaman - Flask Routing, DB stuff  
 
 ## Description
-The project is a game that uses physics to simulate the flight path of a paper airplane, and features can be upgraded using cash gained on the flight. The number of meters flown by the plane will be shown on a leaderboard with other players. Players can collect boosts on their flight that give them cash multipliers.
+The project is a game that uses physics to simulate the flight path of a paper airplane, and features can be upgraded using cash gained on the flight. Players can collect boosts on their flight that give them cash multipliers.
 
 ## Launch Codes - Run Locally
 ### Clone Repository
