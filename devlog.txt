@@ -112,6 +112,9 @@ shyneC -- 2022-03-16 20:41
 Add starPositions array, star spawn + move.
 Star counting is WIP - 0 stars :(
 
+aryamanG -- 2022-03-16 23:12
+Adjust database tables
+
 michaelB -- 2022-03-17 09:01
 Add plane movement/background movement in the y-direction.
 
@@ -200,6 +203,9 @@ Add total distance.
 
 michaelB -- 2022-03-22 19:04
 Add saving and loading progress for logged in users.
+
+aryamanG -- 2022-03-22 20:22
+Adding login reroute
 
 michaelB -- 2022-03-23 09:35
 Apply upgrades to logged in users when progress is loaded. Clean up upgrade code.

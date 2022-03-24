@@ -42,6 +42,7 @@ def login(username, password):
 
   else:
       return True
+
 def load(username):
   c.execute("""SELECT * FROM users WHERE username=?""", [username])
   return c.fetchone()
@@ -59,7 +60,7 @@ def save(username, data):
   print(gaming)
   print(upgrades)
   c.execute("""UPDATE users SET cash=?, upgrades=?, progress=?, gaming=? WHERE username=?""", [saveData[1], upgrades, saveData[0], gaming, username])
-  db.commit();
+  db.commit()
   
   
   
